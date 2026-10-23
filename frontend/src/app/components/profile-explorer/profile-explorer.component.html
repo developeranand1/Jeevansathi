@@ -1,0 +1,198 @@
+<section id="profiles" class="py-5 bg-sand-gradient">
+  <div class="container-fluid px-3 px-md-4 px-xl-5" style="max-width: 1520px; margin: 0 auto;">
+    <!-- Section Title Motif -->
+    <div class="text-center mb-4">
+      <div class="section-header-motif">
+        <span class="divider-line"></span>
+        <i class="bi bi-suit-heart-fill text-danger fs-5"></i>
+        <span class="divider-line right"></span>
+      </div>
+      <h2 class="display-6 fw-bold">Verified Matrimonial Profiles</h2>
+      <p class="text-muted max-w-600 mx-auto">
+        Discover compatible matches with complete family biodatas, career backgrounds, and Kundli horoscope alignment.
+      </p>
+
+      <!-- Gender Tabs (All, Brides, Grooms) -->
+      <div class="d-inline-flex p-1 bg-white rounded-pill shadow-sm border border-light mt-2">
+        <button
+          type="button"
+          class="btn btn-tab rounded-pill px-4"
+          [class.active]="filterForm.get('gender')?.value === 'all'"
+          (click)="setGenderTab('all')"
+        >
+          <i class="bi bi-grid-fill me-1"></i> All Matches ({{ matrimonyService.profiles().length }})
+        </button>
+        <button
+          type="button"
+          class="btn btn-tab rounded-pill px-4"
+          [class.active]="filterForm.get('gender')?.value === 'bride'"
+          (click)="setGenderTab('bride')"
+        >
+          <i class="bi bi-gender-female me-1 text-danger"></i> Brides (Female)
+        </button>
+        <button
+          type="button"
+          class="btn btn-tab rounded-pill px-4"
+          [class.active]="filterForm.get('gender')?.value === 'groom'"
+          (click)="setGenderTab('groom')"
+        >
+          <i class="bi bi-gender-male me-1 text-primary"></i> Grooms (Male)
+        </button>
+      </div>
+    </div>
+
+    <!-- Explorer Layout: Filter Sidebar + Profile Grid -->
+    <div class="row g-4">
+      <!-- Left Filters Sidebar (Reactive Form) -->
+      <div class="col-lg-3">
+        <div class="filter-sidebar sticky-sidebar bg-white p-4 rounded-4 shadow-sm">
+          <div class="d-flex align-items-center justify-content-between mb-3 pb-2 border-bottom">
+            <h5 class="fw-bold mb-0 text-dark">
+              <i class="bi bi-funnel-fill text-danger me-1"></i> Filter Profiles
+            </h5>
+            <button type="button" class="btn btn-sm btn-link text-decoration-none text-muted p-0" (click)="resetAllFilters()">
+              Reset All
+            </button>
+          </div>
+
+          <form [formGroup]="filterForm">
+            <!-- Keyword Search -->
+            <div class="mb-3">
+              <label class="form-label small fw-semibold text-secondary">Search Keyword / ID</label>
+              <div class="input-group">
+                <span class="input-group-text bg-light border-end-0"><i class="bi bi-search text-muted"></i></span>
+                <input
+                  type="text"
+                  class="form-control form-control-royal border-start-0"
+                  placeholder="e.g. Sharma, IAS, Doctor, Pune..."
+                  formControlName="searchKeyword"
+                />
+              </div>
+            </div>
+
+            <!-- Community / Caste -->
+            <div class="mb-3">
+              <label class="form-label small fw-semibold text-secondary">Community / Caste</label>
+              <select class="form-select form-select-royal" formControlName="caste">
+                <option value="all">All Communities</option>
+                <option value="Brahmin">Brahmin</option>
+                <option value="Rajput">Rajput</option>
+                <option value="Agarwal">Agarwal / Vaishya</option>
+                <option value="Kayastha">Kayastha</option>
+                <option value="Maheshwari">Maheshwari</option>
+                <option value="Maratha">Maratha</option>
+                <option value="Yadav">Yadav</option>
+                <option value="Jain">Jain</option>
+              </select>
+            </div>
+
+            <!-- Profession Category -->
+            <div class="mb-3">
+              <label class="form-label small fw-semibold text-secondary">Profession</label>
+              <select class="form-select form-select-royal" formControlName="professionCategory">
+                <option value="all">All Professions</option>
+                <option value="it">IT & Tech Leaders</option>
+                <option value="doctor">Doctors (MBBS/MD)</option>
+                <option value="civil">Civil Services (IAS/IPS/IES)</option>
+                <option value="finance">Chartered Accountants & Finance</option>
+                <option value="business">Business Owners & Founders</option>
+              </select>
+            </div>
+
+            <!-- Manglik Status -->
+            <div class="mb-3">
+              <label class="form-label small fw-semibold text-secondary">Manglik Status</label>
+              <select class="form-select form-select-royal" formControlName="manglik">
+                <option value="all">Doesn't Matter</option>
+                <option value="Non-Manglik">Non-Manglik</option>
+                <option value="Manglik">Manglik</option>
+                <option value="Anshik Manglik">Anshik Manglik</option>
+              </select>
+            </div>
+
+            <!-- Mother Tongue -->
+            <div class="mb-3">
+              <label class="form-label small fw-semibold text-secondary">Mother Tongue</label>
+              <select class="form-select form-select-royal" formControlName="motherTongue">
+                <option value="all">All Languages</option>
+                <option value="Hindi">Hindi</option>
+                <option value="Punjabi">Punjabi</option>
+                <option value="Marathi">Marathi</option>
+                <option value="Gujarati">Gujarati</option>
+                <option value="Tamil">Tamil</option>
+              </select>
+            </div>
+
+            <!-- City -->
+            <div class="mb-3">
+              <label class="form-label small fw-semibold text-secondary">City</label>
+              <select class="form-select form-select-royal" formControlName="city">
+                <option value="all">All Locations</option>
+                <option value="Delhi">Delhi NCR</option>
+                <option value="Mumbai">Mumbai</option>
+                <option value="Pune">Pune</option>
+                <option value="Bangalore">Bengaluru</option>
+                <option value="Jaipur">Jaipur</option>
+                <option value="Lucknow">Lucknow</option>
+                <option value="Ahmedabad">Ahmedabad</option>
+              </select>
+            </div>
+          </form>
+
+          <!-- Verified Promise Card -->
+          <div class="trust-badge-box p-3 rounded-3 mt-4 text-center">
+            <i class="bi bi-patch-check-fill text-warning fs-3 mb-1"></i>
+            <h6 class="fw-bold mb-1">100% Privacy Ensured</h6>
+            <p class="small text-muted mb-0">
+              Your contact info & photos remain protected. Shared strictly upon mutual acceptance.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Profiles Grid -->
+      <div class="col-lg-9">
+        <!-- Results Top Bar -->
+        <div class="d-flex align-items-center justify-content-between mb-3 bg-white p-3 rounded-3 shadow-sm border border-light">
+          <div class="text-secondary small">
+            Showing <strong class="text-dark">{{ matrimonyService.filteredProfiles().length }}</strong> verified profiles matching your criteria
+          </div>
+          <div class="d-flex align-items-center gap-2">
+            <span class="badge badge-gold">
+              <i class="bi bi-shield-lock-fill me-1"></i> Manual ID Verification
+            </span>
+          </div>
+        </div>
+
+        <!-- Profiles Grid -->
+        @if (matrimonyService.filteredProfiles().length > 0) {
+          <div class="row g-3 g-xl-4">
+            @for (item of matrimonyService.filteredProfiles(); track item.id) {
+              <div class="col-sm-6 col-xxl-4 d-flex">
+                <app-profile-card
+                  [profile]="item"
+                  class="w-100"
+                  (openKundliWithProfile)="onProfileKundliClick($event)"
+                ></app-profile-card>
+              </div>
+            }
+          </div>
+        } @else {
+          <!-- Empty State -->
+          <div class="text-center py-5 bg-white rounded-4 shadow-sm border border-light p-4">
+            <div class="empty-icon-circle mx-auto mb-3">
+              <i class="bi bi-person-x-fill text-danger fs-1"></i>
+            </div>
+            <h4 class="fw-bold text-dark">No Profiles Match These Filters</h4>
+            <p class="text-muted max-w-500 mx-auto">
+              We couldn't find matches for the selected criteria. Try loosening your age or community filters.
+            </p>
+            <button class="btn btn-royal-primary mt-2" (click)="resetAllFilters()">
+              <i class="bi bi-arrow-counterclockwise me-1"></i> Reset All Filters
+            </button>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>

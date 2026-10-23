@@ -1,0 +1,21 @@
+.pricing-card {
+  transition: all 0.35s ease;
+  border-color: #E8DFD3 !important;
+}
+
+.pricing-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--sacred-gold) !important;
+}
+
+.popular-card {
+  border: 2px solid var(--sacred-gold) !important;
+  box-shadow: var(--shadow-md);
+}
+
+.popular-ribbon {
+  position: absolute;
+  top: -14px;
+  right: 24px;
+}

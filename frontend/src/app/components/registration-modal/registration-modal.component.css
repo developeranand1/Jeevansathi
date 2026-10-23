@@ -1,0 +1,61 @@
+.modal-backdrop-custom {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 2, 6, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 1060;
+}
+
+.modal-content-custom {
+  width: 100%;
+  max-width: 680px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-header-custom {
+  background: linear-gradient(135deg, var(--royal-maroon-dark) 0%, var(--royal-maroon) 100%);
+  border-bottom: 2px solid var(--sacred-gold);
+}
+
+.modal-body-custom {
+  max-height: calc(90vh - 140px);
+}
+
+.success-icon-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #EBFBEE;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-close-custom {
+  background: transparent;
+  border: none;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.btn-close-custom:hover {
+  opacity: 1;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.92);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

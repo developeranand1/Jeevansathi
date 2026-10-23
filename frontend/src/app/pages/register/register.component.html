@@ -1,0 +1,506 @@
+<div class="register-page-wrapper py-5">
+  <div class="container">
+    <!-- Header Banner -->
+    <div class="text-center mb-4">
+      <a routerLink="/" class="text-decoration-none d-inline-flex align-items-center gap-2 mb-2">
+        <div class="brand-badge-circle">
+          <i class="bi bi-gem text-warning fs-3"></i>
+        </div>
+        <div class="text-start">
+          <span class="fs-3 fw-bold text-dark font-serif d-block leading-tight">Jeevansathi <span class="text-danger">Marriage.com</span></span>
+          <span class="text-muted small text-uppercase letter-spacing-1">India's Most Trusted Matrimonial Platform</span>
+        </div>
+      </a>
+      <h2 class="display-6 fw-bold text-dark font-serif mt-2">Free Matrimonial Registration</h2>
+      <p class="text-muted max-w-600 mx-auto">
+        Join 5,00,000+ verified brides and grooms. Complete your profile in 5 simple steps to receive compatible matchmaking recommendations.
+      </p>
+    </div>
+
+    @if (!isSubmitted()) {
+      <!-- Multi-step Stepper Header -->
+      <div class="stepper-nav-card p-3 p-md-4 rounded-4 bg-white shadow-sm border mb-4">
+        <div class="d-flex justify-content-between position-relative stepper-bar-container">
+          <div class="stepper-progress-line" [style.width.%]="((currentStep() - 1) / 4) * 100"></div>
+
+          <button
+            type="button"
+            class="step-item btn border-0 p-0 text-center"
+            [class.active]="currentStep() >= 1"
+            (click)="goToStep(1)"
+          >
+            <div class="step-circle mx-auto mb-1">1</div>
+            <span class="small fw-semibold d-none d-md-block text-secondary">Basic Info</span>
+          </button>
+
+          <button
+            type="button"
+            class="step-item btn border-0 p-0 text-center"
+            [class.active]="currentStep() >= 2"
+            (click)="goToStep(2)"
+          >
+            <div class="step-circle mx-auto mb-1">2</div>
+            <span class="small fw-semibold d-none d-md-block text-secondary">Religion & Caste</span>
+          </button>
+
+          <button
+            type="button"
+            class="step-item btn border-0 p-0 text-center"
+            [class.active]="currentStep() >= 3"
+            (click)="goToStep(3)"
+          >
+            <div class="step-circle mx-auto mb-1">3</div>
+            <span class="small fw-semibold d-none d-md-block text-secondary">Education & Job</span>
+          </button>
+
+          <button
+            type="button"
+            class="step-item btn border-0 p-0 text-center"
+            [class.active]="currentStep() >= 4"
+            (click)="goToStep(4)"
+          >
+            <div class="step-circle mx-auto mb-1">4</div>
+            <span class="small fw-semibold d-none d-md-block text-secondary">Family Details</span>
+          </button>
+
+          <button
+            type="button"
+            class="step-item btn border-0 p-0 text-center"
+            [class.active]="currentStep() >= 5"
+            (click)="goToStep(5)"
+          >
+            <div class="step-circle mx-auto mb-1">5</div>
+            <span class="small fw-semibold d-none d-md-block text-secondary">Preferences</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Main Form Container -->
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <div class="card form-card border-0 shadow-sm rounded-4 p-4 p-md-5 bg-white">
+            <form [formGroup]="regForm" (ngSubmit)="onSubmit()">
+              <!-- STEP 1: Basic & Account Information -->
+              @if (currentStep() === 1) {
+                <div>
+                  <div class="d-flex align-items-center justify-content-between border-bottom pb-3 mb-4">
+                    <div>
+                      <h4 class="fw-bold font-serif text-dark mb-1">Step 1: Account & Candidate Basics</h4>
+                      <p class="text-muted small mb-0">Provide primary identity and contact details.</p>
+                    </div>
+                    <span class="badge badge-gold px-3 py-2">Step 1 of 5</span>
+                  </div>
+
+                  <div class="mb-4">
+                    <label class="form-label small fw-semibold text-secondary">This Profile is Being Created For *</label>
+                    <div class="d-flex flex-wrap gap-2">
+                      @for (rel of ['Self', 'Son', 'Daughter', 'Brother', 'Sister', 'Relative / Friend']; track rel) {
+                        <button
+                          type="button"
+                          class="btn btn-sm btn-outline-secondary rounded-pill px-3 py-1"
+                          [class.btn-royal-primary]="regForm.get('profileFor')?.value === rel"
+                          (click)="regForm.patchValue({ profileFor: rel })"
+                        >
+                          {{ rel }}
+                        </button>
+                      }
+                    </div>
+                  </div>
+
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label class="form-label small fw-semibold text-secondary">Candidate Full Name *</label>
+                      <input type="text" class="form-control form-control-royal" formControlName="fullName" placeholder="e.g. Rahul Sharma" />
+                    </div>
+
+                    <div class="col-md-6">
+                      <label class="form-label small fw-semibold text-secondary">Gender *</label>
+                      <select class="form-select form-select-royal" formControlName="gender">
+                        <option value="bride">Bride (Female)</option>
+                        <option value="groom">Groom (Male)</option>
+                      </select>
+                    </div>
+
+                    <div class="col-md-4">
+                      <label class="form-label small fw-semibold text-secondary">Date of Birth *</label>
+                      <input type="date" class="form-control form-control-royal" formControlName="dob" />
+                    </div>
+
+                    <div class="col-md-4">
+                      <label class="form-label small fw-semibold text-secondary">Height</label>
+                      <select class="form-select form-select-royal" formControlName="height">
+                        <option value="5' 0&quot; (152 cm)">5' 0" (152 cm)</option>
+                        <option value="5' 2&quot; (157 cm)">5' 2" (157 cm)</option>
+                        <option value="5' 4&quot; (163 cm)">5' 4" (163 cm)</option>
+                        <option value="5' 5&quot; (165 cm)">5' 5" (165 cm)</option>
+                        <option value="5' 7&quot; (170 cm)">5' 7" (170 cm)</option>
+                        <option value="5' 9&quot; (175 cm)">5' 9" (175 cm)</option>
+                        <option value="5' 11&quot; (180 cm)">5' 11" (180 cm)</option>
+                        <option value="6' 0&quot; (183 cm)">6' 0" (183 cm)</option>
+                      </select>
+                    </div>
+
+                    <div class="col-md-4">
+                      <label class="form-label small fw-semibold text-secondary">Marital Status</label>
+                      <select class="form-select form-select-royal" formControlName="maritalStatus">
+                        <option value="Never Married">Never Married</option>
+                        <option value="Divorced">Divorced</option>
+                        <option value="Widowed">Widowed</option>
+                        <option value="Awaiting Divorce">Awaiting Divorce</option>
+                      </select>
+                    </div>
+
+                    <div class="col-md-6">
+                      <label class="form-label small fw-semibold text-secondary">Mobile Number * (Verification Via SMS)</label>
+                      <div class="input-group">
+                        <span class="input-group-text bg-light text-muted fw-bold">+91</span>
+                        <input type="tel" class="form-control form-control-royal" formControlName="mobile" placeholder="10-digit mobile number" />
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <label class="form-label small fw-semibold text-secondary">Email Address *</label>
+                      <input type="email" class="form-control form-control-royal" formControlName="email" placeholder="name@example.com" />
+                    </div>
+
+                    <div class="col-md-12">
+                      <label class="form-label small fw-semibold text-secondary">Create Account Password *</label>
+                      <input type="password" class="form-control form-control-royal" formControlName="password" placeholder="At least 6 characters" />
+                    </div>
+                  </div>
+                </div>
+              }
+
+              <!-- STEP 2: Religion, Community & Astrology -->
+              @if (currentStep() === 2) {
+                <div>
+                  <div class="d-flex align-items-center justify-content-between border-bottom pb-3 mb-4">
+                    <div>
+                      <h4 class="fw-bold font-serif text-dark mb-1">Step 2: Religion, Caste & Astrological Lineage</h4>
+                      <p class="text-muted small mb-0">Important for traditional family background and Kundli horoscope matching.</p>
+                    </div>
+                    <span class="badge badge-gold px-3 py-2">Step 2 of 5</span>
+                  </div>
+
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label class="form-label small fw-semibold text-secondary">Religion *</label>
+                      <select class="form-select form-select-royal" formControlName="religion">
+                        <option value="Hindu">Hindu</option>
+                        <option value="Jain">Jain</option>
+                        <option value="Sikh">Sikh</option>
+                      </select>
+                    </div>
+
+                    <div class="col-md-6">
+                      <label class="form-label small fw-semibold text-secondary">Community / Caste *</label>
+                      <select class="form-select form-select-royal" formControlName="caste">
+                        <option value="Brahmin">Brahmin</option>
+                        <option value="Rajput">Rajput</option>
+                        <option value="Agarwal">Agarwal / Vaishya</option>
+                        <option value="Kayastha">Kayastha</option>
+                        <option value="Maheshwari">Maheshwari</option>
+                        <option value="Maratha">Maratha</option>
+                        <option value="Yadav">Yadav</option>
+                        <option value="Jain">Jain</option>
+                        <option value="Other">Other Community</option>
+                      </select>
+                    </div>
+
+                    <div class="col-md-6">
+                      <label class="form-label small fw-semibold text-secondary">Sub-caste / Shakha</label>
+                      <input type="text" class="form-control form-control-royal" formControlName="subCaste" placeholder="e.g. Gaur, Saraswat, Rathore, Garg" />
+                    </div>
+
+                    <div class="col-md-6">
+                      <label class="form-label small fw-semibold text-secondary">Gotra * (Family Lineage)</label>
+                      <input type="text" class="form-control form-control-royal" formControlName="gotra" placeholder="e.g. Kashyap, Shandilya, Bharadwaj" />
+                    </div>
+
+                    <div class="col-md-6">
+                      <label class="form-label small fw-semibold text-secondary">Mother Tongue *</label>
+                      <select class="form-select form-select-royal" formControlName="motherTongue">
+                        <option value="Hindi">Hindi</option>
+                        <option value="Punjabi">Punjabi</option>
+                        <option value="Marathi">Marathi</option>
+                        <option value="Gujarati">Gujarati</option>
+                        <option value="Tamil">Tamil</option>
+                        <option value="Telugu">Telugu</option>
+                        <option value="Bengali">Bengali</option>
+                      </select>
+                    </div>
+
+                    <div class="col-md-6">
+                      <label class="form-label small fw-semibold text-secondary">Manglik Status</label>
+                      <select class="form-select form-select-royal" formControlName="manglik">
+                        <option value="Non-Manglik">Non-Manglik</option>
+                        <option value="Manglik">Manglik</option>
+                        <option value="Anshik Manglik">Anshik Manglik (Partial)</option>
+                        <option value="Don't Know">Don't Know</option>
+                      </select>
+                    </div>
+
+                    <div class="col-md-6">
+                      <label class="form-label small fw-semibold text-secondary">Rashi (Zodiac Moon Sign)</label>
+                      <select class="form-select form-select-royal" formControlName="rashi">
+                        <option value="Mesh (Aries)">Mesh (Aries)</option>
+                        <option value="Vrishabha (Taurus)">Vrishabha (Taurus)</option>
+                        <option value="Mithun (Gemini)">Mithun (Gemini)</option>
+                        <option value="Kark (Cancer)">Kark (Cancer)</option>
+                        <option value="Simha (Leo)">Simha (Leo)</option>
+                        <option value="Kanya (Virgo)">Kanya (Virgo)</option>
+                        <option value="Tula (Libra)">Tula (Libra)</option>
+                        <option value="Vrishchik (Scorpio)">Vrishchik (Scorpio)</option>
+                        <option value="Dhanu (Sagittarius)">Dhanu (Sagittarius)</option>
+                        <option value="Makar (Capricorn)">Makar (Capricorn)</option>
+                        <option value="Kumbha (Aquarius)">Kumbha (Aquarius)</option>
+                        <option value="Meena (Pisces)">Meena (Pisces)</option>
+                      </select>
+                    </div>
+
+                    <div class="col-md-6">
+                      <label class="form-label small fw-semibold text-secondary">Nakshatra</label>
+                      <input type="text" class="form-control form-control-royal" formControlName="nakshatra" placeholder="e.g. Ashwini, Rohini, Magha" />
+                    </div>
+                  </div>
+                </div>
+              }
+
+              <!-- STEP 3: Education & Career Details -->
+              @if (currentStep() === 3) {
+                <div>
+                  <div class="d-flex align-items-center justify-content-between border-bottom pb-3 mb-4">
+                    <div>
+                      <h4 class="fw-bold font-serif text-dark mb-1">Step 3: Education & Career Background</h4>
+                      <p class="text-muted small mb-0">Highlight academic qualifications, current employment, and income.</p>
+                    </div>
+                    <span class="badge badge-gold px-3 py-2">Step 3 of 5</span>
+                  </div>
+
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label class="form-label small fw-semibold text-secondary">Highest Education Level *</label>
+                      <select class="form-select form-select-royal" formControlName="education">
+                        <option value="B.Tech / B.E.">B.Tech / B.E. (Engineering)</option>
+                        <option value="MBA / PGDM">MBA / PGDM</option>
+                        <option value="MBBS / MD / MS">MBBS / MD / MS (Doctor)</option>
+                        <option value="CA / CS / CFA">CA / CS / CFA</option>
+                        <option value="Civil Services (IAS/IPS)">Civil Services (IAS / IPS / IES)</option>
+                        <option value="Masters / M.Tech">Masters / M.Tech</option>
+                        <option value="Bachelors / Graduate">Bachelors Degree</option>
+                      </select>
+                    </div>
+
+                    <div class="col-md-6">
+                      <label class="form-label small fw-semibold text-secondary">College / University Name</label>
+                      <input type="text" class="form-control form-control-royal" formControlName="institute" placeholder="e.g. IIT Delhi, IIM-A, AIIMS, Delhi University" />
+                    </div>
+
+                    <div class="col-md-6">
+                      <label class="form-label small fw-semibold text-secondary">Employed In</label>
+                      <select class="form-select form-select-royal" formControlName="employedIn">
+                        <option value="Private Sector / MNC">Private Sector / MNC</option>
+                        <option value="Government / Public Sector">Government / Public Sector</option>
+                        <option value="Business Owner / Founder">Business Owner / Founder</option>
+                        <option value="Self-Employed Professional">Self-Employed Professional</option>
+                        <option value="Defense / Civil Services">Defense / Civil Services</option>
+                      </select>
+                    </div>
+
+                    <div class="col-md-6">
+                      <label class="form-label small fw-semibold text-secondary">Designation / Occupation *</label>
+                      <input type="text" class="form-control form-control-royal" formControlName="profession" placeholder="e.g. Senior Software Architect, Doctor, VP" />
+                    </div>
+
+                    <div class="col-md-6">
+                      <label class="form-label small fw-semibold text-secondary">Employer / Company Name</label>
+                      <input type="text" class="form-control form-control-royal" formControlName="company" placeholder="e.g. Amazon, Google, Apollo, Private Firm" />
+                    </div>
+
+                    <div class="col-md-6">
+                      <label class="form-label small fw-semibold text-secondary">Annual Income</label>
+                      <select class="form-select form-select-royal" formControlName="income">
+                        <option value="₹10 - ₹15 Lakhs">₹10 - ₹15 Lakhs</option>
+                        <option value="₹15 - ₹25 Lakhs">₹15 - ₹25 Lakhs</option>
+                        <option value="₹25 - ₹40 Lakhs">₹25 - ₹40 Lakhs</option>
+                        <option value="₹40 - ₹60 Lakhs">₹40 - ₹60 Lakhs</option>
+                        <option value="₹60+ Lakhs">₹60+ Lakhs</option>
+                      </select>
+                    </div>
+
+                    <div class="col-md-6">
+                      <label class="form-label small fw-semibold text-secondary">Working City *</label>
+                      <input type="text" class="form-control form-control-royal" formControlName="city" placeholder="e.g. Delhi NCR, Mumbai, Bengaluru" />
+                    </div>
+
+                    <div class="col-md-6">
+                      <label class="form-label small fw-semibold text-secondary">State / Region</label>
+                      <input type="text" class="form-control form-control-royal" formControlName="state" placeholder="e.g. Delhi, Maharashtra, Karnataka" />
+                    </div>
+                  </div>
+                </div>
+              }
+
+              <!-- STEP 4: Family Details -->
+              @if (currentStep() === 4) {
+                <div>
+                  <div class="d-flex align-items-center justify-content-between border-bottom pb-3 mb-4">
+                    <div>
+                      <h4 class="fw-bold font-serif text-dark mb-1">Step 4: Family Details & Values</h4>
+                      <p class="text-muted small mb-0">Help prospective families learn about your family culture and background.</p>
+                    </div>
+                    <span class="badge badge-gold px-3 py-2">Step 4 of 5</span>
+                  </div>
+
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label class="form-label small fw-semibold text-secondary">Father's Occupation</label>
+                      <input type="text" class="form-control form-control-royal" formControlName="fatherOccupation" placeholder="e.g. Businessman, Civil Engineer (Govt.)" />
+                    </div>
+
+                    <div class="col-md-6">
+                      <label class="form-label small fw-semibold text-secondary">Mother's Occupation</label>
+                      <input type="text" class="form-control form-control-royal" formControlName="motherOccupation" placeholder="e.g. Homemaker, Professor, Doctor" />
+                    </div>
+
+                    <div class="col-md-6">
+                      <label class="form-label small fw-semibold text-secondary">Brothers & Sisters (Siblings)</label>
+                      <input type="text" class="form-control form-control-royal" formControlName="siblings" placeholder="e.g. 1 Elder Brother (Married), 1 Sister" />
+                    </div>
+
+                    <div class="col-md-6">
+                      <label class="form-label small fw-semibold text-secondary">Family Type</label>
+                      <select class="form-select form-select-royal" formControlName="familyType">
+                        <option value="Nuclear">Nuclear Family</option>
+                        <option value="Joint">Joint Family</option>
+                      </select>
+                    </div>
+
+                    <div class="col-md-6">
+                      <label class="form-label small fw-semibold text-secondary">Family Values</label>
+                      <select class="form-select form-select-royal" formControlName="familyValues">
+                        <option value="Moderate">Moderate (Blends Modern & Traditional)</option>
+                        <option value="Traditional">Traditional</option>
+                        <option value="Liberal">Liberal</option>
+                      </select>
+                    </div>
+
+                    <div class="col-md-6">
+                      <label class="form-label small fw-semibold text-secondary">Ancestral Hometown / Origin</label>
+                      <input type="text" class="form-control form-control-royal" formControlName="familyOrigin" placeholder="e.g. Jaipur, Lucknow, Pune, Varanasi" />
+                    </div>
+                  </div>
+                </div>
+              }
+
+              <!-- STEP 5: Partner Preferences & About Me -->
+              @if (currentStep() === 5) {
+                <div>
+                  <div class="d-flex align-items-center justify-content-between border-bottom pb-3 mb-4">
+                    <div>
+                      <h4 class="fw-bold font-serif text-dark mb-1">Step 5: Partner Preferences & About Me</h4>
+                      <p class="text-muted small mb-0">Describe what you are looking for in your ideal life partner.</p>
+                    </div>
+                    <span class="badge badge-gold px-3 py-2">Step 5 of 5</span>
+                  </div>
+
+                  <div class="row g-3 mb-3">
+                    <div class="col-md-6">
+                      <label class="form-label small fw-semibold text-secondary">Preferred Partner Age Range</label>
+                      <div class="d-flex align-items-center gap-2">
+                        <input type="number" class="form-control form-control-royal" formControlName="partnerMinAge" placeholder="Min" />
+                        <span class="text-muted">to</span>
+                        <input type="number" class="form-control form-control-royal" formControlName="partnerMaxAge" placeholder="Max" />
+                        <span class="text-muted small">Years</span>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <label class="form-label small fw-semibold text-secondary">Preferred Locations / Cities</label>
+                      <input type="text" class="form-control form-control-royal" formControlName="partnerPreferredCities" placeholder="e.g. Delhi NCR, Mumbai, Bengaluru" />
+                    </div>
+
+                    <div class="col-12">
+                      <label class="form-label small fw-semibold text-secondary">Preferred Education & Profession</label>
+                      <input type="text" class="form-control form-control-royal" formControlName="partnerEducationPref" placeholder="e.g. Engineer, Doctor, CA, or Corporate Executive" />
+                    </div>
+
+                    <div class="col-12">
+                      <label class="form-label small fw-semibold text-secondary">A Brief Note About Yourself (Bio)</label>
+                      <textarea
+                        class="form-control form-control-royal"
+                        rows="3"
+                        formControlName="aboutMe"
+                        placeholder="Write a few lines about your personality, hobbies, life goals, and expectations from a life partner..."
+                      ></textarea>
+                    </div>
+                  </div>
+
+                  <!-- Trust & Consent Check -->
+                  <div class="p-3 bg-light rounded-3 border small">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" checked id="policyCheck" />
+                      <label class="form-check-label text-muted" for="policyCheck">
+                        I confirm that all matrimonial information submitted is genuine. I agree to the <a href="javascript:void(0)" class="text-danger">Privacy Policy</a> and <a href="javascript:void(0)" class="text-danger">Terms of Service</a> of Jeevansathi Marriage.
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              }
+
+              <!-- Bottom Stepper Navigation Controls -->
+              <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+                @if (currentStep() > 1) {
+                  <button type="button" class="btn btn-outline-secondary px-4 py-2" (click)="prevStep()">
+                    <i class="bi bi-arrow-left me-1"></i> Previous Step
+                  </button>
+                } @else {
+                  <div></div>
+                }
+
+                @if (currentStep() < 5) {
+                  <button type="button" class="btn btn-royal-primary px-4 py-2" (click)="nextStep()">
+                    Next Step <i class="bi bi-arrow-right ms-1"></i>
+                  </button>
+                } @else {
+                  <button type="submit" class="btn btn-royal-gold px-5 py-2 fs-6 shadow-sm" [disabled]="isLoading()">
+                    @if (isLoading()) {
+                      <span class="spinner-border spinner-border-sm me-1"></span> Creating Profile...
+                    } @else {
+                      <i class="bi bi-check-circle-fill me-1"></i> Complete Free Registration
+                    }
+                  </button>
+                }
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    } @else {
+      <!-- Registration Success Confirmation Page -->
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="card border-0 shadow-lg rounded-4 p-5 text-center bg-white">
+            <div class="success-icon-box mx-auto mb-4">
+              <i class="bi bi-check-lg text-success display-4"></i>
+            </div>
+            <h2 class="fw-bold font-serif text-dark mb-2">Congratulations & Welcome!</h2>
+            <h5 class="text-secondary mb-3">Your Profile Has Been Created on Jeevansathi Marriage</h5>
+            <p class="text-muted max-w-600 mx-auto mb-4 leading-relaxed">
+              Your matrimonial biodata is now active. You can browse verified profiles, express interest, and calculate 36-Guna Kundli compatibility.
+            </p>
+
+            <div class="d-flex justify-content-center gap-3">
+              <button class="btn btn-royal-gold px-4 py-2 fs-6 shadow-sm" (click)="viewMatches()">
+                <i class="bi bi-search-heart me-1"></i> Browse Verified Matches
+              </button>
+              <a routerLink="/login" class="btn btn-royal-outline px-4 py-2 fs-6">
+                <i class="bi bi-box-arrow-in-right me-1"></i> Go to Login
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>

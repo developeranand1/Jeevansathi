@@ -1,0 +1,85 @@
+.register-page-wrapper {
+  background: linear-gradient(135deg, #FAF7F2 0%, #F5EEE6 100%);
+  min-height: calc(100vh - 120px);
+}
+
+.brand-badge-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FFF4D0 0%, #F5DE98 100%);
+  border: 1.5px solid var(--sacred-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-card {
+  border: 1px solid rgba(212, 175, 55, 0.25) !important;
+  box-shadow: 0 10px 35px rgba(74, 7, 19, 0.08);
+}
+
+.stepper-nav-card {
+  border: 1px solid rgba(212, 175, 55, 0.25);
+}
+
+.stepper-bar-container {
+  position: relative;
+  z-index: 1;
+}
+
+.stepper-progress-line {
+  position: absolute;
+  top: 18px;
+  left: 25px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--royal-maroon), var(--sacred-gold));
+  z-index: -1;
+  transition: width 0.35s ease;
+}
+
+.step-item {
+  background: transparent;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.step-circle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  border: 2px solid #D6C8B8;
+  color: #7A6F65;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.step-item.active .step-circle {
+  background: var(--royal-maroon);
+  border-color: var(--sacred-gold);
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(122, 12, 30, 0.3);
+}
+
+.success-icon-box {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: #EBFBEE;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.leading-tight {
+  line-height: 1.15;
+}
+
+.leading-relaxed {
+  line-height: 1.6;
+}

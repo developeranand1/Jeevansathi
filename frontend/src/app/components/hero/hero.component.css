@@ -1,0 +1,128 @@
+/* ==========================================================================
+   HERO COMPONENT - ZOOM IN & ZOOM OUT ADAPTIVE STYLING
+   ========================================================================== */
+
+.hero-wrapper {
+  background:
+    radial-gradient(circle at 10% 25%, rgba(212, 175, 55, 0.2) 0%, transparent 40%),
+    radial-gradient(circle at 90% 75%, rgba(232, 89, 12, 0.2) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.08) 0%, transparent 60%),
+    linear-gradient(135deg, #3A030C 0%, #5E0917 50%, #250207 100%);
+  min-height: calc(100vh - 80px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(2.5rem, 5vw, 4.5rem) 0;
+  position: relative;
+  width: 100%;
+}
+
+.hero-content-container {
+  width: 100%;
+  max-width: 1460px;
+  margin: 0 auto;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    radial-gradient(circle at 5% 50%, rgba(212, 175, 55, 0.12) 0%, transparent 35%),
+    radial-gradient(circle at 95% 50%, rgba(212, 175, 55, 0.12) 0%, transparent 35%);
+  pointer-events: none;
+}
+
+.hero-title {
+  font-size: clamp(2rem, 3.8vw, 3.4rem);
+  font-weight: 800;
+  line-height: 1.18;
+  letter-spacing: -0.01em;
+  color: #fff;
+}
+
+.hero-subtitle {
+  font-size: clamp(0.95rem, 1.2vw, 1.15rem);
+  color: #E8DACB;
+  max-width: 880px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.search-card {
+  border-radius: 20px;
+  width: 100%;
+  max-width: 1360px;
+  margin: 0 auto;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Astrological Rashi Bar */
+.rashi-bar-container {
+  background: rgba(28, 3, 8, 0.88);
+  width: 100%;
+  max-width: 1360px;
+  margin: 0 auto;
+}
+
+.rashi-scroll-wrapper {
+  scrollbar-width: thin;
+  scrollbar-color: var(--sacred-gold) transparent;
+}
+
+.rashi-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  color: #FFFFFF;
+  border-radius: 9999px;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.rashi-btn:hover {
+  background: rgba(212, 175, 55, 0.2);
+  border-color: var(--sacred-gold);
+  color: #FFE494;
+  transform: translateY(-2px);
+}
+
+.rashi-btn.active {
+  background: linear-gradient(135deg, #D4AF37 0%, #A67C12 100%);
+  color: #2D050C;
+  border-color: #FFF2B2;
+  font-weight: 700;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+}
+
+.rashi-btn.active .rashi-symbol {
+  color: #2D050C !important;
+}
+
+.stat-box {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+}
+
+.stat-box:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--sacred-gold);
+  transform: translateY(-4px);
+}
+
+.stat-number {
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 2.4vw, 2.2rem);
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.stat-label {
+  font-weight: 600;
+  color: #FFFFFF;
+  margin-top: 0.25rem;
+  font-size: clamp(0.85rem, 1vw, 0.95rem);
+}

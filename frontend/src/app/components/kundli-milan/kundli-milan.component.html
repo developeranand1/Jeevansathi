@@ -1,0 +1,197 @@
+<section id="kundli-calculator" class="py-5 mandala-bg text-white position-relative overflow-hidden">
+  <div class="container-fluid px-3 px-md-4 px-xl-5 position-relative" style="max-width: 1480px; margin: 0 auto;">
+    <!-- Header Motif -->
+    <div class="text-center mb-4">
+      <div class="section-header-motif">
+        <span class="divider-line"></span>
+        <i class="bi bi-stars text-warning fs-5"></i>
+        <span class="divider-line right"></span>
+      </div>
+      <h2 class="display-6 fw-bold text-white">Vedic Kundli Milan & Horoscope Compatibility</h2>
+      <p class="text-white-50 max-w-600 mx-auto">
+        Calculate authentic 36-Guna Ashtakoot Milan, Manglik Dosha, Nadi, and Bhakoot compatibility based on sacred Vedic astrological shastras.
+      </p>
+    </div>
+
+    <div class="row g-4 align-items-stretch">
+      <!-- Left: Input Form (Reactive Forms) -->
+      <div class="col-lg-5">
+        <div class="glass-card-dark p-4 h-100 shadow-lg border border-warning border-opacity-25">
+          <h4 class="fw-bold gold-gradient-text mb-3">
+            <i class="bi bi-calculator me-2"></i> Ashtakoot 36-Guna Calculator
+          </h4>
+
+          <form [formGroup]="kundliForm" (ngSubmit)="calculateMatch()">
+            <!-- Groom Details -->
+            <div class="p-3 mb-3 rounded-3 bg-white bg-opacity-10 border border-light border-opacity-10">
+              <div class="fw-bold text-warning small mb-2 d-flex align-items-center gap-1">
+                <i class="bi bi-gender-male"></i> Groom Details
+              </div>
+              <div class="mb-2">
+                <label class="form-label text-white-50 small mb-1">Groom Name</label>
+                <input type="text" class="form-control form-control-royal" formControlName="boyName" placeholder="Groom Name" />
+              </div>
+              <div class="row g-2">
+                <div class="col-6">
+                  <label class="form-label text-white-50 small mb-1">Rashi (Zodiac)</label>
+                  <select class="form-select form-select-royal" formControlName="boyRashi">
+                    @for (r of rashis; track r) {
+                      <option [value]="r">{{ r }}</option>
+                    }
+                  </select>
+                </div>
+                <div class="col-6">
+                  <label class="form-label text-white-50 small mb-1">Nakshatra (Star)</label>
+                  <select class="form-select form-select-royal" formControlName="boyNakshatra">
+                    @for (n of nakshatras; track n) {
+                      <option [value]="n">{{ n }}</option>
+                    }
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bride Details -->
+            <div class="p-3 mb-3 rounded-3 bg-white bg-opacity-10 border border-light border-opacity-10">
+              <div class="fw-bold text-warning small mb-2 d-flex align-items-center gap-1">
+                <i class="bi bi-gender-female"></i> Bride Details
+              </div>
+              <div class="mb-2">
+                <label class="form-label text-white-50 small mb-1">Bride Name</label>
+                <input type="text" class="form-control form-control-royal" formControlName="girlName" placeholder="Bride Name" />
+              </div>
+              <div class="row g-2">
+                <div class="col-6">
+                  <label class="form-label text-white-50 small mb-1">Rashi (Zodiac)</label>
+                  <select class="form-select form-select-royal" formControlName="girlRashi">
+                    @for (r of rashis; track r) {
+                      <option [value]="r">{{ r }}</option>
+                    }
+                  </select>
+                </div>
+                <div class="col-6">
+                  <label class="form-label text-white-50 small mb-1">Nakshatra (Star)</label>
+                  <select class="form-select form-select-royal" formControlName="girlNakshatra">
+                    @for (n of nakshatras; track n) {
+                      <option [value]="n">{{ n }}</option>
+                    }
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-royal-gold w-100 py-2 fs-6">
+              <i class="bi bi-stars me-1"></i> Calculate Guna Milan
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Right: Detailed Ashtakoot Score & Compatibility Analysis -->
+      <div class="col-lg-7">
+        @if (matchResult(); as res) {
+          <div class="glass-card-dark p-4 h-100 shadow-lg border border-warning border-opacity-25 d-flex flex-column">
+            <!-- Score Header -->
+            <div class="d-flex flex-wrap justify-content-between align-items-center border-bottom border-light border-opacity-10 pb-3 mb-3">
+              <div>
+                <span class="badge bg-warning text-dark fw-bold mb-1">
+                  <i class="bi bi-shield-check"></i> {{ res.compatibilityLevel }} Match
+                </span>
+                <h4 class="mb-0 fw-bold text-white">
+                  {{ res.boyName }} <span class="text-warning">&</span> {{ res.girlName }}
+                </h4>
+              </div>
+              <div class="text-end">
+                <div class="score-circle gold-gradient-text">
+                  {{ res.totalGunas }}<span class="fs-6 text-white-50">/{{ res.maxGunas }}</span>
+                </div>
+                <div class="small text-white-50">Total Ashtakoot Gunas</div>
+              </div>
+            </div>
+
+            <!-- Recommendation Alert -->
+            <div class="p-3 mb-3 rounded-3 bg-warning bg-opacity-10 border border-warning border-opacity-25">
+              <div class="d-flex align-items-center gap-2 mb-1">
+                <i class="bi bi-bell-fill text-warning"></i>
+                <strong class="text-warning">Astrological Recommendation:</strong>
+              </div>
+              <p class="small text-white-75 mb-0">{{ res.recommendation }}</p>
+            </div>
+
+            <!-- Guna Breakdown Table -->
+            <div class="table-responsive flex-grow-1">
+              <table class="table table-dark table-borderless table-sm small align-middle mb-0">
+                <thead>
+                  <tr class="border-bottom border-light border-opacity-10 text-warning">
+                    <th>Koot (Guna)</th>
+                    <th>Significance</th>
+                    <th class="text-center">Score</th>
+                    <th class="text-end">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Varna</strong></td>
+                    <td class="text-white-50">{{ res.breakdown.varna.desc }}</td>
+                    <td class="text-center">{{ res.breakdown.varna.score }} / 1</td>
+                    <td class="text-end"><span class="badge bg-success bg-opacity-25 text-success">Pass</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Vashya</strong></td>
+                    <td class="text-white-50">{{ res.breakdown.vashya.desc }}</td>
+                    <td class="text-center">{{ res.breakdown.vashya.score }} / 2</td>
+                    <td class="text-end"><span class="badge bg-success bg-opacity-25 text-success">Pass</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Tara</strong></td>
+                    <td class="text-white-50">{{ res.breakdown.tara.desc }}</td>
+                    <td class="text-center">{{ res.breakdown.tara.score }} / 3</td>
+                    <td class="text-end"><span class="badge bg-success bg-opacity-25 text-success">Pass</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Yoni</strong></td>
+                    <td class="text-white-50">{{ res.breakdown.yoni.desc }}</td>
+                    <td class="text-center">{{ res.breakdown.yoni.score }} / 4</td>
+                    <td class="text-end"><span class="badge bg-success bg-opacity-25 text-success">Pass</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Graha Maitri</strong></td>
+                    <td class="text-white-50">{{ res.breakdown.grahaMaitri.desc }}</td>
+                    <td class="text-center">{{ res.breakdown.grahaMaitri.score }} / 5</td>
+                    <td class="text-end"><span class="badge bg-success bg-opacity-25 text-success">Pass</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Gana</strong></td>
+                    <td class="text-white-50">{{ res.breakdown.gana.desc }}</td>
+                    <td class="text-center">{{ res.breakdown.gana.score }} / 6</td>
+                    <td class="text-end"><span class="badge bg-success bg-opacity-25 text-success">Pass</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Bhakoot</strong></td>
+                    <td class="text-white-50">{{ res.breakdown.bhakoot.desc }}</td>
+                    <td class="text-center">{{ res.breakdown.bhakoot.score }} / 7</td>
+                    <td class="text-end"><span class="badge bg-success bg-opacity-25 text-success">Pass</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Nadi</strong></td>
+                    <td class="text-white-50">{{ res.breakdown.nadi.desc }}</td>
+                    <td class="text-center">{{ res.breakdown.nadi.score }} / 8</td>
+                    <td class="text-end"><span class="badge bg-success bg-opacity-25 text-success">Auspicious</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Footer note -->
+            <div class="d-flex justify-content-between align-items-center mt-3 pt-2 border-top border-light border-opacity-10 small text-white-50">
+              <span><i class="bi bi-shield-check text-warning me-1"></i> Certified Astrological Algorithm</span>
+              <button class="btn btn-sm btn-outline-warning" (click)="calculateMatch()">
+                <i class="bi bi-arrow-repeat me-1"></i> Recalculate
+              </button>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>

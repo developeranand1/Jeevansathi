@@ -1,0 +1,105 @@
+<!-- Top Announcement Bar -->
+<div class="top-announcement-bar py-1 px-3 d-none d-md-block text-white">
+  <div class="container-fluid px-3 px-md-4 px-xl-5 d-flex justify-content-between align-items-center small">
+    <div class="d-flex align-items-center gap-3">
+      <span><i class="bi bi-shield-check text-warning me-1"></i> 100% Manually Screened & Government ID Verified
+        Profiles</span>
+      <span class="opacity-50">|</span>
+      <span><i class="bi bi-stars text-warning me-1"></i> Astrological Kundli Milan & Horoscope Compatibility</span>
+    </div>
+    <div class="d-flex align-items-center gap-3">
+      <a href="tel:18008482424" class="text-white text-decoration-none hover-gold">
+        <i class="bi bi-telephone-fill text-warning me-1"></i> Toll-Free: 1800-848-2424
+      </a>
+      <span class="opacity-50">|</span>
+      <span class="badge bg-warning text-dark font-monospace py-1 px-2">jeevansathimarriage.com</span>
+    </div>
+  </div>
+</div>
+
+<!-- Main Sticky Header (z-index: 1040) -->
+<header class="navbar navbar-expand-lg sticky-top main-navbar ">
+  <div class="container-fluid px-3 px-md-4 px-xl-5">
+    <!-- Brand Logo: Jeevansathi Marriage -->
+    <a routerLink="/" class="navbar-brand d-flex align-items-center gap-2 cursor-pointer text-decoration-none">
+      <div class="brand-symbol">
+        <i class="bi bi-gem"></i>
+      </div>
+      <div>
+        <div class="brand-title">
+          Jeevansathi <span class="brand-sub">Marriage</span>
+        </div>
+        <div class="brand-tagline">
+          The Most Trusted Matrimonial Platform
+        </div>
+      </div>
+    </a>
+
+    <!-- Mobile Toggler -->
+    <button class="navbar-toggler border-0 shadow-none text-white" type="button" data-bs-toggle="collapse"
+      data-bs-target="#navbarMatrimonyNav" aria-controls="navbarMatrimonyNav" aria-expanded="false"
+      aria-label="Toggle navigation">
+      <i class="bi bi-list fs-1 text-warning"></i>
+    </button>
+
+    <!-- Nav Items & Action Buttons -->
+    <div class="collapse navbar-collapse" id="navbarMatrimonyNav">
+      <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-1 gap-lg-2">
+        <li class="nav-item">
+          <a class="nav-link cursor-pointer">
+            Home
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link cursor-pointer">
+            Membership
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link cursor-pointer">
+            Find/Match
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link cursor-pointer">
+            Blog
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link cursor-pointer">
+            Success Stories
+          </a>
+        </li>
+      </ul>
+
+      <!-- Action Buttons -->
+      <div class="d-flex align-items-center gap-2 mt-2 mt-lg-0">
+        <!-- Shortlisted Counter Trigger -->
+        <button type="button" class="btn btn-shortlist position-relative" title="Saved Matches"
+          (click)="openShortlistDrawer.emit()">
+          <i class="bi bi-bookmark-heart fs-5 text-warning"></i>
+          @if (matrimonyService.shortlistedIds().size > 0) {
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+            {{ matrimonyService.shortlistedIds().size }}
+          </span>
+          }
+        </button>
+
+        <!-- Dashboard Link (If logged in) -->
+        <a routerLink="/dashboard" class="btn btn-royal-outline text-white border-warning text-decoration-none d-flex align-items-center">
+          <i class="bi bi-person-circle me-1 text-warning"></i> Dashboard
+        </a>
+
+        <!-- Login Button -->
+        <a routerLink="/login" class="btn btn-outline-light btn-sm text-decoration-none">
+          Login
+        </a>
+
+        <!-- Register Free Button -->
+        <a routerLink="/register" class="btn btn-royal-gold shadow-sm text-decoration-none">
+          <i class="bi bi-person-plus-fill me-1"></i> Register Free
+        </a>
+      </div>
+    </div>
+  </div>
+</header>

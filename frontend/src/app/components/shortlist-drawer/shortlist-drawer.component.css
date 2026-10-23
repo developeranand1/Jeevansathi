@@ -1,0 +1,61 @@
+.drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 1060;
+}
+
+.drawer-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 420px;
+  z-index: 1070;
+}
+
+.drawer-header {
+  background: linear-gradient(135deg, var(--royal-maroon-dark) 0%, var(--royal-maroon) 100%);
+  border-bottom: 2px solid var(--sacred-gold);
+}
+
+.btn-xs {
+  font-size: 0.78rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 9999px;
+}
+
+.hover-card {
+  transition: all 0.2s ease;
+}
+
+.hover-card:hover {
+  background: #FFFDF9 !important;
+  border-color: var(--sacred-gold) !important;
+  transform: translateX(-2px);
+}
+
+.btn-close-custom {
+  background: transparent;
+  border: none;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.btn-close-custom:hover {
+  opacity: 1;
+}
+
+.animate-slide-left {
+  animation: slideLeft 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideLeft {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}

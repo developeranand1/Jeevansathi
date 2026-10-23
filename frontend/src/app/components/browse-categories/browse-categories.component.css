@@ -1,0 +1,76 @@
+.community-card {
+  background: #FFFDF9;
+  border: 1px solid #ECE3D4;
+  transition: all 0.3s ease;
+}
+
+.community-card:hover {
+  background: #FFFFFF;
+  border-color: var(--sacred-gold);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.comm-icon-circle {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(122, 12, 30, 0.08);
+  color: var(--royal-maroon);
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.community-card:hover .comm-icon-circle {
+  background: var(--royal-maroon);
+  color: var(--sacred-gold);
+}
+
+.profession-banner {
+  background: linear-gradient(135deg, #4A0813 0%, #2A040B 100%);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  box-shadow: var(--shadow-md);
+}
+
+.profession-card {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: all 0.25s ease;
+}
+
+.profession-card:hover {
+  background: rgba(212, 175, 55, 0.18);
+  border-color: var(--sacred-gold);
+  transform: translateY(-3px);
+}
+
+.city-card {
+  height: 180px;
+  border: 1px solid #EBE3D7;
+}
+
+.city-img {
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.city-card:hover .city-img {
+  transform: scale(1.08);
+}
+
+.city-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.2) 60%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}

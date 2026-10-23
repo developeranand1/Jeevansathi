@@ -1,0 +1,178 @@
+@if (matrimonyService.selectedProfile(); as p) {
+  <div class="modal-backdrop-custom d-flex align-items-center justify-content-center p-2 p-md-3">
+    <div class="modal-content-custom bg-white rounded-4 shadow-lg overflow-hidden border border-warning border-opacity-50 animate-scale-in">
+      <!-- Modal Header -->
+      <div class="modal-header-custom p-3 text-white d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center gap-2">
+          <i class="bi bi-file-earmark-person-fill text-warning fs-5"></i>
+          <div>
+            <h5 class="mb-0 fw-bold font-serif text-white">Full Matrimonial Biodata (Complete Candidate Profile)</h5>
+            <span class="small text-warning">Matrimony ID: {{ p.id }}</span>
+          </div>
+        </div>
+        <button type="button" class="btn btn-close-custom text-white" (click)="onClose()">
+          <i class="bi bi-x-lg fs-5"></i>
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body-custom p-4 overflow-auto">
+        <!-- Top Banner with Photo & Core Summary -->
+        <div class="row g-4 mb-4 pb-3 border-bottom">
+          <div class="col-md-4 text-center">
+            <div class="biodata-img-wrapper rounded-3 overflow-hidden shadow-sm mx-auto position-relative">
+              <img [src]="p.photoUrl" [alt]="p.name" class="w-100 h-100 object-fit-cover" />
+              <div class="position-absolute bottom-0 start-0 end-0 p-2 bg-dark bg-opacity-75 text-white small">
+                <i class="bi bi-shield-check text-warning me-1"></i> Govt ID Verified
+              </div>
+            </div>
+            <div class="mt-2">
+              <span class="badge badge-kundli">
+                <i class="bi bi-stars"></i> {{ p.gunaScore }}/36 Gunas Match
+              </span>
+            </div>
+          </div>
+
+          <div class="col-md-8">
+            <div class="d-flex justify-content-between align-items-start">
+              <div>
+                <h3 class="fw-bold font-serif text-dark mb-1">{{ p.name }}</h3>
+                <div class="text-secondary fw-semibold mb-2">
+                  {{ p.age }} Yrs • {{ p.height }} • {{ p.maritalStatus }}
+                </div>
+              </div>
+              <button class="btn btn-sm btn-outline-danger" (click)="onShortlist(p.id)">
+                <i class="bi" [class.bi-bookmark-star-fill]="matrimonyService.shortlistedIds().has(p.id)" [class.bi-bookmark-star]="!matrimonyService.shortlistedIds().has(p.id)"></i>
+                {{ matrimonyService.shortlistedIds().has(p.id) ? 'Shortlisted' : 'Shortlist' }}
+              </button>
+            </div>
+
+            <!-- Highlights Grid -->
+            <div class="row g-2 my-2 bg-light p-3 rounded-3 small">
+              <div class="col-6">
+                <strong class="text-secondary">Community:</strong> {{ p.caste }}
+              </div>
+              <div class="col-6">
+                <strong class="text-secondary">Gotra:</strong> {{ p.gotra }}
+              </div>
+              <div class="col-6">
+                <strong class="text-secondary">Rashi:</strong> {{ p.rashi }}
+              </div>
+              <div class="col-6">
+                <strong class="text-secondary">Nakshatra:</strong> {{ p.nakshatra }}
+              </div>
+              <div class="col-6">
+                <strong class="text-secondary">Profession:</strong> {{ p.profession }}
+              </div>
+              <div class="col-6">
+                <strong class="text-secondary">Income:</strong> {{ p.income }}
+              </div>
+              <div class="col-6">
+                <strong class="text-secondary">Location:</strong> {{ p.city }}, {{ p.state }}
+              </div>
+              <div class="col-6">
+                <strong class="text-secondary">Manglik:</strong> {{ p.manglik }}
+              </div>
+            </div>
+
+            <p class="text-muted small mt-2 mb-0">
+              <strong class="text-dark">About Me:</strong> {{ p.about }}
+            </p>
+          </div>
+        </div>
+
+        <!-- Section: Family Background -->
+        <div class="mb-4">
+          <h5 class="fw-bold font-serif text-dark border-bottom pb-2 mb-3">
+            <i class="bi bi-people-fill text-danger me-2"></i> Family Background & Lineage
+          </h5>
+          <div class="row g-3 small">
+            <div class="col-md-6">
+              <div class="p-2 bg-light rounded">
+                <span class="text-muted d-block">Father's Profession:</span>
+                <strong>{{ p.familyBackground.father }}</strong>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="p-2 bg-light rounded">
+                <span class="text-muted d-block">Mother's Profession:</span>
+                <strong>{{ p.familyBackground.mother }}</strong>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="p-2 bg-light rounded">
+                <span class="text-muted d-block">Siblings:</span>
+                <strong>{{ p.familyBackground.siblings }}</strong>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="p-2 bg-light rounded">
+                <span class="text-muted d-block">Family Type & Values:</span>
+                <strong>{{ p.familyBackground.familyType }} Family • {{ p.familyBackground.familyValues }} Values</strong>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="p-2 bg-light rounded">
+                <span class="text-muted d-block">Ancestral Origin:</span>
+                <strong>{{ p.familyBackground.familyOrigin }}</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section: Partner Expectations -->
+        <div class="mb-3">
+          <h5 class="fw-bold font-serif text-dark border-bottom pb-2 mb-3">
+            <i class="bi bi-heart-half text-danger me-2"></i> Partner Expectations & Preferences
+          </h5>
+          <div class="row g-3 small">
+            <div class="col-md-6">
+              <div class="p-2 bg-light rounded">
+                <span class="text-muted d-block">Preferred Age Range:</span>
+                <strong>{{ p.partnerPreferences.ageRange }}</strong>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="p-2 bg-light rounded">
+                <span class="text-muted d-block">Height Preference:</span>
+                <strong>{{ p.partnerPreferences.heightRange }}</strong>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="p-2 bg-light rounded">
+                <span class="text-muted d-block">Education & Career:</span>
+                <strong>{{ p.partnerPreferences.education }}</strong>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="p-2 bg-light rounded">
+                <span class="text-muted d-block">Preferred Locations:</span>
+                <strong>{{ p.partnerPreferences.preferredCities }}</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="modal-footer-custom p-3 bg-light border-top d-flex justify-content-between align-items-center">
+        <button type="button" class="btn btn-outline-secondary btn-sm" (click)="printBiodata()">
+          <i class="bi bi-printer me-1"></i> Print Biodata
+        </button>
+
+        <div class="d-flex gap-2">
+          <button type="button" class="btn btn-outline-primary btn-sm" (click)="onRequestContact(p.name)">
+            <i class="bi bi-telephone-fill me-1"></i> Request Contact / WhatsApp
+          </button>
+          <button
+            type="button"
+            class="btn btn-royal-primary btn-sm"
+            (click)="onSendInterest(p.id)"
+          >
+            <i class="bi bi-heart-fill me-1 text-warning"></i> Express Interest
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+}

@@ -1,0 +1,87 @@
+<section id="communities" class="py-5 bg-white">
+  <div class="container-fluid px-3 px-md-4 px-xl-5" style="max-width: 1520px; margin: 0 auto;">
+    <!-- Section Header -->
+    <div class="text-center mb-5">
+      <div class="section-header-motif">
+        <span class="divider-line"></span>
+        <i class="bi bi-diagram-3-fill text-warning fs-5"></i>
+        <span class="divider-line right"></span>
+      </div>
+      <h2 class="display-6 fw-bold">Browse by Sacred Community</h2>
+      <p class="text-muted max-w-600 mx-auto">
+        Respecting traditions, family lineage (Gotra), and cultural heritage. Find verified profiles within your sacred community.
+      </p>
+    </div>
+
+    <!-- Communities Grid -->
+    <div class="row g-3 mb-5">
+      @for (c of communities; track c.caste) {
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="community-card p-3 rounded-3 text-center cursor-pointer h-100" (click)="selectCommunity(c.caste)">
+            <div class="comm-icon-circle mx-auto mb-2">
+              <i class="bi {{ c.icon }}"></i>
+            </div>
+            <h6 class="fw-bold text-dark mb-1 font-serif">{{ c.name }}</h6>
+            <div class="small text-muted mb-2 line-clamp-1">{{ c.desc }}</div>
+            <span class="badge badge-maroon">{{ c.count }} Profiles</span>
+          </div>
+        </div>
+      }
+    </div>
+
+    <!-- Browse by High-Achieving Professions -->
+    <div class="profession-banner p-4 p-lg-5 rounded-4 mb-5 text-white">
+      <div class="row align-items-center mb-4">
+        <div class="col-lg-8">
+          <h3 class="fw-bold text-white font-serif mb-2">
+            <i class="bi bi-briefcase text-warning me-2"></i> Elite & High-Achieving Professions
+          </h3>
+          <p class="text-white-50 mb-0">
+            Connect with accomplished engineers, doctors, civil servants, chartered accountants, and business successors.
+          </p>
+        </div>
+        <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+          <span class="badge bg-warning text-dark px-3 py-2 fw-semibold">
+            <i class="bi bi-award-fill me-1"></i> Pre-Screened Career Verified
+          </span>
+        </div>
+      </div>
+
+      <div class="row g-3">
+        @for (p of professions; track p.key) {
+          <div class="col-md-6 col-lg">
+            <div class="profession-card p-3 rounded-3 h-100 cursor-pointer" (click)="selectProfession(p.key)">
+              <i class="bi {{ p.icon }} fs-2 text-warning mb-2 d-block"></i>
+              <h6 class="fw-bold text-white mb-1">{{ p.name }}</h6>
+              <div class="small text-white-50">{{ p.salary }}</div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- Browse by Major Matrimonial Hubs -->
+    <div class="mt-4">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+          <h3 class="fw-bold text-dark font-serif mb-1">Browse by Prime Metropolitan Cities</h3>
+          <p class="text-muted small mb-0">Find matches nearby with shared language and modern lifestyle preferences.</p>
+        </div>
+      </div>
+
+      <div class="row g-3">
+        @for (city of regions; track city.tag) {
+          <div class="col-6 col-md-3">
+            <div class="city-card rounded-3 overflow-hidden position-relative cursor-pointer" (click)="selectRegion(city.tag)">
+              <img [src]="city.img" [alt]="city.city" class="w-100 city-img" />
+              <div class="city-overlay p-3 text-white">
+                <h5 class="fw-bold mb-0 font-serif">{{ city.city }}</h5>
+                <div class="small text-warning">{{ city.count }}</div>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>

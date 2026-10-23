@@ -1,0 +1,62 @@
+<section id="pricing" class="py-5 bg-sand-gradient">
+  <div class="container-fluid px-3 px-md-4 px-xl-5" style="max-width: 1520px; margin: 0 auto;">
+    <!-- Header -->
+    <div class="text-center mb-5">
+      <div class="section-header-motif">
+        <span class="divider-line"></span>
+        <i class="bi bi-gem text-warning fs-5"></i>
+        <span class="divider-line right"></span>
+      </div>
+      <h2 class="display-6 fw-bold">VIP & Premium Membership Plans</h2>
+      <p class="text-muted max-w-600 mx-auto">
+        Accelerate your matrimonial search with direct verified phone contacts, WhatsApp messaging, and dedicated relationship management.
+      </p>
+    </div>
+
+    <!-- Pricing Cards Grid -->
+    <div class="row g-4 align-items-stretch justify-content-center">
+      @for (p of plans; track p.name) {
+        <div class="col-lg-4">
+          <div class="pricing-card h-100 rounded-4 p-4 d-flex flex-column bg-white border position-relative" [class.popular-card]="p.isPopular">
+            @if (p.isPopular) {
+              <div class="popular-ribbon">
+                <span class="badge bg-warning text-dark fw-bold px-3 py-1 shadow-sm">
+                  <i class="bi bi-fire me-1"></i> {{ p.badge }}
+                </span>
+              </div>
+            }
+
+            <div class="mb-3">
+              <h4 class="fw-bold font-serif text-dark mb-1">{{ p.name }}</h4>
+              <div class="small text-muted">{{ p.subtitle }}</div>
+            </div>
+
+            <!-- Price -->
+            <div class="price-box my-3 p-3 rounded-3 bg-light text-center">
+              <div class="display-6 fw-bold text-dark font-serif">{{ p.price }}</div>
+              <div class="small text-muted">{{ p.period }}</div>
+            </div>
+
+            <!-- Features List -->
+            <ul class="list-unstyled flex-grow-1 my-3 d-flex flex-column gap-2 small">
+              @for (feat of p.features; track feat) {
+                <li class="d-flex align-items-start gap-2">
+                  <i class="bi bi-check-circle-fill text-success flex-shrink-0 mt-1"></i>
+                  <span class="text-secondary">{{ feat }}</span>
+                </li>
+              }
+            </ul>
+
+            <button
+              type="button"
+              class="btn w-100 py-2 fs-6 mt-3 {{ p.btnClass }}"
+              (click)="selectPlan(p.name)"
+            >
+              {{ p.btnText }}
+            </button>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

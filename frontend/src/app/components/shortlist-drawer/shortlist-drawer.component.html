@@ -1,0 +1,72 @@
+<div class="drawer-backdrop" (click)="close.emit()"></div>
+
+<div class="drawer-panel bg-white shadow-lg d-flex flex-column animate-slide-left">
+  <!-- Drawer Header -->
+  <div class="drawer-header p-3 text-white d-flex justify-content-between align-items-center">
+    <div class="d-flex align-items-center gap-2">
+      <i class="bi bi-bookmark-heart-fill text-warning fs-4"></i>
+      <div>
+        <h5 class="mb-0 fw-bold font-serif text-white">Shortlisted Matches</h5>
+        <span class="small text-warning">{{ matrimonyService.shortlistedProfiles().length }} Saved Profiles</span>
+      </div>
+    </div>
+    <button type="button" class="btn btn-close-custom text-white" (click)="close.emit()">
+      <i class="bi bi-x-lg fs-5"></i>
+    </button>
+  </div>
+
+  <!-- Drawer Body -->
+  <div class="drawer-body p-3 overflow-auto flex-grow-1">
+    @if (matrimonyService.shortlistedProfiles().length > 0) {
+      <div class="d-flex flex-column gap-3">
+        @for (item of matrimonyService.shortlistedProfiles(); track item.id) {
+          <div class="p-3 bg-light rounded-3 border d-flex gap-3 align-items-center cursor-pointer hover-card" (click)="onView(item)">
+            <img [src]="item.photoUrl" [alt]="item.name" class="rounded-3 object-fit-cover flex-shrink-0" width="70" height="85" />
+
+            <div class="flex-grow-1 min-w-0">
+              <div class="d-flex justify-content-between align-items-start">
+                <h6 class="fw-bold text-dark font-serif mb-0 text-truncate">{{ item.name }}</h6>
+                <button
+                  type="button"
+                  class="btn btn-sm btn-link text-danger p-0 ms-2"
+                  title="Remove from shortlist"
+                  (click)="onRemove(item.id, $event)"
+                >
+                  <i class="bi bi-trash"></i>
+                </button>
+              </div>
+
+              <div class="small text-muted mb-1">{{ item.age }} Yrs • {{ item.caste }}</div>
+              <div class="small text-secondary text-truncate mb-2">{{ item.profession }}</div>
+
+              <div class="d-flex gap-2">
+                <button
+                  type="button"
+                  class="btn btn-xs btn-royal-primary py-1 px-2"
+                  (click)="onConnect(item.id, $event)"
+                >
+                  <i class="bi bi-heart-fill me-1 text-warning"></i> Express Interest
+                </button>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    } @else {
+      <div class="text-center py-5">
+        <i class="bi bi-bookmark-x text-muted display-4 mb-3 d-block"></i>
+        <h5 class="fw-bold text-dark">No Saved Profiles Yet</h5>
+        <p class="small text-muted">
+          Click the bookmark icon on any bride or groom card to save them here for quick family review.
+        </p>
+      </div>
+    }
+  </div>
+
+  <!-- Drawer Footer -->
+  <div class="drawer-footer p-3 bg-light border-top text-center">
+    <button class="btn btn-outline-secondary w-100 py-2 btn-sm" (click)="close.emit()">
+      Close Drawer
+    </button>
+  </div>
+</div>

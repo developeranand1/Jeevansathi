@@ -1,0 +1,59 @@
+.bg-sand-gradient {
+  background: linear-gradient(180deg, #FBF8F4 0%, #F5EEE6 100%);
+}
+
+.max-w-600 {
+  max-width: 600px;
+}
+
+.max-w-500 {
+  max-width: 500px;
+}
+
+.btn-tab {
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-weight: 600;
+  padding: 0.5rem 1.25rem;
+  transition: all 0.25s ease;
+}
+
+.btn-tab:hover {
+  color: var(--royal-maroon);
+}
+
+.btn-tab.active {
+  background: var(--royal-maroon);
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 12px rgba(122, 12, 30, 0.25);
+}
+
+.filter-sidebar {
+  border: 1px solid #EBE3D7;
+  position: relative;
+  z-index: 5;
+}
+
+@media (min-width: 992px) {
+  .sticky-sidebar {
+    position: sticky;
+    top: 95px;
+    z-index: 5;
+  }
+}
+
+.trust-badge-box {
+  background: #FFFDF8;
+  border: 1px dashed var(--sacred-gold);
+}
+
+.empty-icon-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #FFE8EC;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

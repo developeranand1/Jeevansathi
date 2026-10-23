@@ -1,0 +1,35 @@
+.login-page-wrapper {
+  background: linear-gradient(135deg, #FAF7F2 0%, #F5EEE6 100%);
+  min-height: calc(100vh - 120px);
+  display: flex;
+  align-items: center;
+}
+
+.login-card {
+  box-shadow: 0 15px 45px rgba(74, 7, 19, 0.12);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+}
+
+.login-side-panel {
+  background: linear-gradient(145deg, #4A0713 0%, #6E0D1E 50%, #30030A 100%);
+  position: relative;
+}
+
+.brand-badge-circle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(212, 175, 55, 0.2);
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.letter-spacing-2 {
+  letter-spacing: 0.35em;
+}
+
+.leading-relaxed {
+  line-height: 1.6;
+}

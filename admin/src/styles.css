@@ -1,0 +1,139 @@
+/* ==========================================================================
+   VIVAH MATRIMONY - ADMIN DESIGN SYSTEM & STYLES
+   Exact same Royal Indian Wedding Palette as Frontend
+   ========================================================================== */
+
+:root {
+  /* Brand Heritage Palette */
+  --royal-maroon: #7A0C1E;
+  --royal-maroon-dark: #500713;
+  --royal-maroon-deep: #38040C;
+  --royal-maroon-light: #9B1B32;
+  --royal-crimson: #B31936;
+  
+  /* Sacred Gold Palette */
+  --sacred-gold: #D4AF37;
+  --sacred-gold-light: #E8C863;
+  --sacred-gold-dark: #AC8618;
+  --sacred-gold-glow: rgba(212, 175, 55, 0.25);
+  --sacred-gold-subtle: #FDF9EE;
+  
+  /* Saffron & Auspicious Accents */
+  --auspicious-saffron: #E8590C;
+  --auspicious-orange: #FD7E14;
+  --saffron-light: #FFF4E6;
+  
+  /* Backgrounds & Surfaces */
+  --bg-sand: #FAF7F2;
+  --bg-ivory: #FFFDF9;
+  --bg-cream: #F5EFEB;
+  --card-white: #FFFFFF;
+  
+  /* Text & Hierarchy */
+  --text-primary: #231C18;
+  --text-secondary: #5C5248;
+  --text-muted: #877B70;
+  --border-light: #EBE3D7;
+  --border-gold: rgba(212, 175, 55, 0.35);
+  
+  /* Functional Colors */
+  --success-green: #2B8A3E;
+  --success-bg: #EBFBEE;
+  --verified-blue: #0B7285;
+  --verified-bg: #E3FAFC;
+  
+  /* Typography */
+  --font-serif: 'Playfair Display', 'Cormorant Garamond', serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  /* Premium Elevations */
+  --shadow-sm: 0 2px 8px rgba(74, 7, 19, 0.05);
+  --shadow-md: 0 8px 24px rgba(74, 7, 19, 0.08);
+  --shadow-lg: 0 16px 40px rgba(74, 7, 19, 0.12);
+  --shadow-gold: 0 8px 30px rgba(212, 175, 55, 0.25);
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-sand);
+  color: var(--text-primary);
+  margin: 0;
+  padding: 0;
+  font-size: 0.875rem;
+}
+
+h1, h2, h3, h4, .font-serif {
+  font-family: var(--font-serif);
+}
+
+/* Common Brand Utilities */
+.bg-sand { background-color: var(--bg-sand) !important; }
+.bg-ivory { background-color: var(--bg-ivory) !important; }
+.bg-maroon { background-color: var(--royal-maroon) !important; }
+.bg-maroon-dark { background-color: var(--royal-maroon-dark) !important; }
+.bg-gold { background-color: var(--sacred-gold) !important; }
+.bg-gold-subtle { background-color: var(--sacred-gold-subtle) !important; }
+
+.text-maroon { color: var(--royal-maroon) !important; }
+.text-gold { color: var(--sacred-gold-dark) !important; }
+.border-gold { border-color: var(--sacred-gold) !important; }
+.border-gold-subtle { border-color: var(--border-gold) !important; }
+
+/* Buttons with Minimal Padding */
+.btn-maroon {
+  background: linear-gradient(135deg, var(--royal-maroon), var(--royal-crimson));
+  color: #fff;
+  border: 1px solid var(--royal-maroon-dark);
+  font-weight: 600;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.8125rem;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+.btn-maroon:hover {
+  background: var(--royal-maroon-dark);
+  color: #fff;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-gold {
+  background: linear-gradient(135deg, var(--sacred-gold), var(--sacred-gold-light));
+  color: #231C18;
+  border: 1px solid var(--sacred-gold-dark);
+  font-weight: 600;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.8125rem;
+  border-radius: 6px;
+}
+.btn-gold:hover {
+  background: var(--sacred-gold-dark);
+  color: #fff;
+}
+
+/* Compact Forms & Tables */
+.form-control-compact, .form-select-compact {
+  padding: 0.35rem 0.65rem;
+  font-size: 0.8125rem;
+  border-color: var(--border-light);
+  border-radius: 6px;
+}
+.form-control-compact:focus, .form-select-compact:focus {
+  border-color: var(--royal-maroon);
+  box-shadow: 0 0 0 0.2rem rgba(122, 12, 30, 0.15);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--sacred-gold);
+}

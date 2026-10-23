@@ -1,0 +1,414 @@
+/* ==========================================================================
+   VIVAH MATRIMONY - GLOBAL DESIGN SYSTEM & STYLES
+   Royal Indian Wedding Palette & Premium Matrimonial Experience
+   ========================================================================== */
+
+:root {
+  /* Brand Heritage Palette */
+  --royal-maroon: #7A0C1E;
+  --royal-maroon-dark: #500713;
+  --royal-maroon-deep: #38040C;
+  --royal-maroon-light: #9B1B32;
+  --royal-crimson: #B31936;
+  
+  /* Sacred Gold Palette */
+  --sacred-gold: #D4AF37;
+  --sacred-gold-light: #E8C863;
+  --sacred-gold-dark: #AC8618;
+  --sacred-gold-glow: rgba(212, 175, 55, 0.25);
+  --sacred-gold-subtle: #FDF9EE;
+  
+  /* Saffron & Auspicious Accents */
+  --auspicious-saffron: #E8590C;
+  --auspicious-orange: #FD7E14;
+  --saffron-light: #FFF4E6;
+  
+  /* Backgrounds & Surfaces */
+  --bg-sand: #FAF7F2;
+  --bg-ivory: #FFFDF9;
+  --bg-cream: #F5EFEB;
+  --card-white: #FFFFFF;
+  
+  /* Text & Hierarchy */
+  --text-primary: #231C18;
+  --text-secondary: #5C5248;
+  --text-muted: #877B70;
+  --border-light: #EBE3D7;
+  --border-gold: rgba(212, 175, 55, 0.35);
+  
+  /* Functional Colors */
+  --success-green: #2B8A3E;
+  --success-bg: #EBFBEE;
+  --verified-blue: #0B7285;
+  --verified-bg: #E3FAFC;
+  
+  /* Typography */
+  --font-serif: 'Playfair Display', 'Cormorant Garamond', serif;
+  --font-royal: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  /* Premium Elevations */
+  --shadow-sm: 0 2px 8px rgba(74, 7, 19, 0.05);
+  --shadow-md: 0 8px 24px rgba(74, 7, 19, 0.08);
+  --shadow-lg: 0 16px 40px rgba(74, 7, 19, 0.12);
+  --shadow-gold: 0 8px 30px rgba(212, 175, 55, 0.25);
+  --shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.04);
+  
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-pill: 9999px;
+  
+  --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Reset & Base Setup */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+.container, .container-fluid {
+  width: 100%;
+  padding-right: clamp(1rem, 2vw, 2.5rem);
+  padding-left: clamp(1rem, 2vw, 2.5rem);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 94% !important;
+  }
+}
+
+@media (min-width: 1600px) {
+  .container {
+    max-width: 1520px !important;
+  }
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-sand);
+  color: var(--text-primary);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, .font-serif {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  color: var(--royal-maroon-dark);
+  letter-spacing: -0.01em;
+}
+
+p, span, a, button, input, select, textarea {
+  font-family: var(--font-sans);
+}
+
+/* Traditional Indian Rangoli & Mandala Patterns */
+.mandala-bg {
+  background-color: var(--royal-maroon-dark);
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.12) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(232, 89, 12, 0.12) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.06) 0%, transparent 60%);
+}
+
+.gold-gradient-text {
+  background: linear-gradient(135deg, #D4AF37 0%, #F5D77F 45%, #C29618 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.maroon-gradient-text {
+  background: linear-gradient(135deg, var(--royal-maroon-dark) 0%, var(--royal-crimson) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Buttons Styling */
+.btn-royal-primary {
+  background: linear-gradient(135deg, var(--royal-maroon) 0%, var(--royal-maroon-dark) 100%);
+  color: #FFFFFF !important;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  font-weight: 600;
+  border-radius: var(--radius-pill);
+  padding: 0.5rem 1.25rem;
+  box-shadow: 0 4px 15px rgba(122, 12, 30, 0.25);
+  transition: all var(--transition-smooth);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  white-space: nowrap;
+}
+
+.btn-royal-primary:hover {
+  background: linear-gradient(135deg, var(--royal-crimson) 0%, var(--royal-maroon) 100%);
+  border-color: var(--sacred-gold);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(122, 12, 30, 0.35);
+  color: #FFFFFF !important;
+}
+
+.btn-royal-gold {
+  background: linear-gradient(135deg, #E6C45B 0%, #D4AF37 50%, #B88E18 100%);
+  color: var(--royal-maroon-dark) !important;
+  border: 1px solid #FFE494;
+  font-weight: 700;
+  border-radius: var(--radius-pill);
+  padding: 0.5rem 1.25rem;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.35);
+  transition: all var(--transition-smooth);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  white-space: nowrap;
+}
+
+.btn-royal-gold:hover {
+  background: linear-gradient(135deg, #F3D372 0%, #E2BD44 50%, #C4981E 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(212, 175, 55, 0.5);
+  color: var(--royal-maroon-dark) !important;
+}
+
+.btn-royal-outline {
+  background: transparent;
+  color: var(--royal-maroon);
+  border: 1.5px solid var(--royal-maroon);
+  font-weight: 600;
+  border-radius: var(--radius-pill);
+  padding: 0.45rem 1.15rem;
+  transition: all var(--transition-smooth);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  white-space: nowrap;
+}
+
+.btn-royal-outline:hover {
+  background: var(--royal-maroon);
+  color: #FFFFFF !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(122, 12, 30, 0.2);
+}
+
+.btn-royal-light {
+  background: var(--sacred-gold-subtle);
+  color: var(--royal-maroon-dark);
+  border: 1px solid var(--border-gold);
+  font-weight: 600;
+  border-radius: var(--radius-pill);
+  padding: 0.45rem 1rem;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.btn-royal-light:hover {
+  background: #FFF1D2;
+  color: var(--royal-maroon-dark);
+  border-color: var(--sacred-gold);
+}
+
+/* Badges */
+.badge-gold {
+  background: linear-gradient(135deg, #FFF6DA 0%, #FBF1C9 100%);
+  color: #926A06;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  font-weight: 600;
+  padding: 0.35rem 0.8rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.78rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.badge-maroon {
+  background: rgba(122, 12, 30, 0.08);
+  color: var(--royal-maroon);
+  border: 1px solid rgba(122, 12, 30, 0.18);
+  font-weight: 600;
+  padding: 0.35rem 0.8rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.78rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.badge-verified {
+  background: #E6FBF8;
+  color: #0E7767;
+  border: 1px solid #A6ECE0;
+  font-weight: 600;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.78rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.badge-kundli {
+  background: #FFF3EB;
+  color: #C04705;
+  border: 1px solid #FDCFB4;
+  font-weight: 600;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.78rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+/* Glassmorphism & Cards */
+.royal-card {
+  background: var(--card-white);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-smooth);
+  overflow: hidden;
+}
+
+.royal-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--border-gold);
+}
+
+.glass-card-dark {
+  background: rgba(45, 6, 12, 0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+}
+
+.glass-card-light {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+/* Section Header Motif */
+.section-header-motif {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.section-header-motif .divider-line {
+  width: 45px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--sacred-gold));
+}
+
+.section-header-motif .divider-line.right {
+  background: linear-gradient(90deg, var(--sacred-gold), transparent);
+}
+
+/* Toast Container */
+.toast-royal-container {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 1080;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.toast-royal {
+  background: var(--royal-maroon-dark);
+  color: #FFFFFF;
+  border: 1px solid var(--sacred-gold);
+  border-radius: var(--radius-md);
+  padding: 0.9rem 1.4rem;
+  box-shadow: var(--shadow-lg), 0 0 20px rgba(212, 175, 55, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  min-width: 300px;
+  max-width: 420px;
+  animation: slideInUp 0.35s ease forwards;
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Shimmer Animation */
+@keyframes goldShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer-gold {
+  background: linear-gradient(90deg, rgba(212,175,55,0) 0%, rgba(212,175,55,0.4) 50%, rgba(212,175,55,0) 100%);
+  background-size: 200% 100%;
+  animation: goldShimmer 3s infinite;
+}
+
+/* Form inputs */
+.form-control-royal, .form-select-royal {
+  background-color: #FFFFFF;
+  border: 1.5px solid #E6DCCD;
+  border-radius: var(--radius-sm);
+  padding: 0.65rem 0.95rem;
+  font-size: 0.92rem;
+  color: var(--text-primary);
+  transition: all var(--transition-fast);
+}
+
+.form-control-royal:focus, .form-select-royal:focus {
+  border-color: var(--sacred-gold);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F4ECE1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBB499;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--royal-maroon);
+}

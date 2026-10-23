@@ -1,0 +1,20 @@
+.story-card {
+  transition: all 0.35s ease;
+}
+
+.story-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--sacred-gold) !important;
+}
+
+.story-img-wrapper {
+  height: 250px;
+  background-color: #2D050C;
+}
+
+.story-img {
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}

@@ -1,0 +1,119 @@
+<div class="royal-card h-100 d-flex flex-column cursor-pointer" (click)="onViewDetails()">
+  <!-- Card Header & Image with Verified Badge -->
+  <div class="position-relative overflow-hidden profile-img-wrapper">
+    <img
+      [src]="profile().photoUrl"
+      [alt]="profile().name"
+      class="w-100 profile-photo"
+      loading="lazy"
+    />
+    
+    <!-- Top Gradient Overlay -->
+    <div class="img-gradient-overlay"></div>
+
+    <!-- Verified Ribbon -->
+    <div class="position-absolute top-0 start-0 m-2 d-flex flex-column gap-1">
+      <span class="badge badge-verified shadow-sm">
+        <i class="bi bi-shield-fill-check"></i> ID Verified
+      </span>
+      <span class="badge bg-dark bg-opacity-75 text-white small rounded-pill">
+        {{ profile().id }}
+      </span>
+    </div>
+
+    <!-- Shortlist Bookmark Button -->
+    <button
+      type="button"
+      class="btn-card-action position-absolute top-0 end-0 m-2"
+      [class.active]="profile().isShortlisted"
+      (click)="onShortlist($event)"
+      title="Shortlist Profile"
+    >
+      <i class="bi" [class.bi-bookmark-star-fill]="profile().isShortlisted" [class.bi-bookmark-star]="!profile().isShortlisted"></i>
+    </button>
+
+    <!-- Bottom Image Floating Info -->
+    <div class="position-absolute bottom-0 start-0 end-0 p-3 text-white">
+      <div class="d-flex justify-content-between align-items-end">
+        <div class="min-w-0 me-2">
+          <h5 class="mb-0 fw-bold font-serif text-white text-truncate">{{ profile().name }}</h5>
+          <div class="small text-warning">
+            <span>{{ profile().age }} Yrs</span> • <span>{{ profile().height }}</span>
+          </div>
+        </div>
+        <!-- Kundli Match Badge -->
+        <span class="badge badge-kundli shadow-sm flex-shrink-0">
+          <i class="bi bi-stars"></i> {{ profile().gunaScore }}/36 Gunas
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Profile Details Body -->
+  <div class="p-3 d-flex flex-column flex-grow-1">
+    <!-- Community & Gotra -->
+    <div class="d-flex align-items-center gap-2 mb-2 pb-2 border-bottom border-light">
+      <i class="bi bi-mortarboard text-danger flex-shrink-0"></i>
+      <div class="small text-truncate">
+        <strong class="text-dark">{{ profile().caste }}</strong> 
+        <span class="text-muted ms-1">(Gotra: {{ profile().gotra }})</span>
+      </div>
+    </div>
+
+    <!-- Profession & Education -->
+    <div class="mb-2">
+      <div class="d-flex align-items-start gap-2 mb-1">
+        <i class="bi bi-briefcase-fill text-warning flex-shrink-0 mt-1"></i>
+        <div class="small line-clamp-1">
+          <strong class="text-dark">{{ profile().profession }}</strong>
+        </div>
+      </div>
+      <div class="d-flex align-items-center gap-2">
+        <i class="bi bi-book-fill text-muted flex-shrink-0"></i>
+        <span class="small text-muted text-truncate">{{ profile().education }}</span>
+      </div>
+    </div>
+
+    <!-- Income & Location Badges -->
+    <div class="d-flex flex-wrap gap-2 my-2">
+      <span class="badge bg-light text-dark border">
+        <i class="bi bi-cash-stack text-success me-1"></i> {{ profile().income }}
+      </span>
+      <span class="badge bg-light text-dark border">
+        <i class="bi bi-geo-alt text-danger me-1"></i> {{ profile().city }}
+      </span>
+      <span class="badge bg-light text-dark border">
+        <i class="bi bi-moon-stars text-warning me-1"></i> {{ profile().manglik }}
+      </span>
+    </div>
+
+    <!-- About Snippet -->
+    <p class="small text-muted mb-3 flex-grow-1 line-clamp-2">
+      {{ profile().about }}
+    </p>
+
+    <!-- PERFECT EQUAL-WIDTH ACTION BUTTONS -->
+    <div class="card-actions-wrapper mt-auto pt-2 border-top">
+      <button
+        type="button"
+        class="card-action-btn btn-view-biodata"
+        (click)="onViewDetails()"
+      >
+        <i class="bi bi-person-lines-fill me-1"></i> View Biodata
+      </button>
+
+      <button
+        type="button"
+        class="card-action-btn btn-connect"
+        [class.btn-connected]="profile().isInterestSent"
+        (click)="onSendInterest($event)"
+      >
+        @if (profile().isInterestSent) {
+          <i class="bi bi-check-circle-fill me-1"></i> Connected
+        } @else {
+          <i class="bi bi-heart-fill me-1 text-warning"></i> Connect
+        }
+      </button>
+    </div>
+  </div>
+</div>

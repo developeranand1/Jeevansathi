@@ -1,0 +1,35 @@
+<!-- Main Navigation Bar -->
+<app-navbar
+  (openShortlistDrawer)="showShortlistDrawer.set(true)"
+></app-navbar>
+
+<!-- Main Routed Page View (/ , /login , /register) -->
+<main class="main-content-area">
+  <router-outlet></router-outlet>
+</main>
+
+<!-- Footer -->
+<app-footer></app-footer>
+
+<!-- Full Biodata Details Modal (Available on any page when profile clicked) -->
+<app-profile-detail-modal></app-profile-detail-modal>
+
+<!-- Shortlisted Matches Drawer -->
+@if (showShortlistDrawer()) {
+  <app-shortlist-drawer
+    (close)="showShortlistDrawer.set(false)"
+  ></app-shortlist-drawer>
+}
+
+<!-- Global Toast Notifications -->
+<div class="toast-royal-container">
+  @for (toast of matrimonyService.toasts(); track toast.id) {
+    <div class="toast-royal" (click)="dismissToast(toast.id)">
+      <i class="bi bi-bell-fill text-warning fs-5 flex-shrink-0"></i>
+      <div class="flex-grow-1 small">{{ toast.message }}</div>
+      <button type="button" class="btn btn-sm btn-link text-white-50 p-0" title="Dismiss">
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
+  }
+</div>

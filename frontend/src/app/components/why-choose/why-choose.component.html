@@ -1,0 +1,57 @@
+<section class="py-5 bg-sand-gradient">
+  <div class="container-fluid px-3 px-md-4 px-xl-5" style="max-width: 1520px; margin: 0 auto;">
+    <!-- Header -->
+    <div class="text-center mb-5">
+      <div class="section-header-motif">
+        <span class="divider-line"></span>
+        <i class="bi bi-award-fill text-warning fs-5"></i>
+        <span class="divider-line right"></span>
+      </div>
+      <h2 class="display-6 fw-bold">Why Indian Families Trust Vivah</h2>
+      <p class="text-muted max-w-600 mx-auto">
+        Built with the sanctity of Indian marriage customs, world-class encryption, and personalized human touch.
+      </p>
+    </div>
+
+    <!-- 4 Core Pillars Grid -->
+    <div class="row g-4 mb-5">
+      @for (f of features; track f.title) {
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-card p-4 rounded-4 bg-white shadow-sm h-100 border border-light text-center">
+            <div class="feature-icon-circle mx-auto mb-3">
+              <i class="bi {{ f.icon }} fs-2 text-warning"></i>
+            </div>
+            <h5 class="fw-bold text-dark font-serif mb-2">{{ f.title }}</h5>
+            <p class="small text-muted mb-0 leading-relaxed">{{ f.desc }}</p>
+          </div>
+        </div>
+      }
+    </div>
+
+    <!-- How It Works Stepper -->
+    <div class="how-it-works-box p-4 p-lg-5 rounded-4 bg-white border border-warning border-opacity-25 shadow-sm">
+      <div class="text-center mb-4">
+        <span class="badge badge-gold px-3 py-1 mb-2">SIMPLE & AUSPICIOUS JOURNEY</span>
+        <h3 class="fw-bold font-serif text-dark mb-1">Your 4-Step Journey to Shubh Vivah</h3>
+      </div>
+
+      <div class="row g-4">
+        @for (s of steps; track s.num) {
+          <div class="col-md-6 col-lg-3">
+            <div class="step-card position-relative text-center p-3">
+              <div class="step-badge mx-auto mb-3">{{ s.num }}</div>
+              <h6 class="fw-bold text-dark font-serif mb-1">{{ s.title }}</h6>
+              <p class="small text-muted mb-0">{{ s.desc }}</p>
+            </div>
+          </div>
+        }
+      </div>
+
+      <div class="text-center mt-4">
+        <button class="btn btn-royal-gold px-4 py-2 fs-6 shadow-sm" (click)="openRegister.emit()">
+          <i class="bi bi-person-plus-fill me-1"></i> Register Free Today & Begin
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,52 @@
+<section id="stories" class="py-5 bg-white">
+  <div class="container-fluid px-3 px-md-4 px-xl-5" style="max-width: 1520px; margin: 0 auto;">
+    <!-- Header -->
+    <div class="text-center mb-5">
+      <div class="section-header-motif">
+        <span class="divider-line"></span>
+        <i class="bi bi-heart-pulse-fill text-danger fs-5"></i>
+        <span class="divider-line right"></span>
+      </div>
+      <h2 class="display-6 fw-bold">Sacred Vivah Success Stories</h2>
+      <p class="text-muted max-w-600 mx-auto">
+        Over 1,20,000+ happily married couples found their lifetime partner right here on Vivah. Read their inspiring journeys.
+      </p>
+    </div>
+
+    <!-- Stories Cards Grid -->
+    <div class="row g-4">
+      @for (s of stories; track s.couple) {
+        <div class="col-lg-4">
+          <div class="story-card h-100 rounded-4 overflow-hidden shadow-sm bg-white border border-light d-flex flex-column">
+            <!-- Couple Image -->
+            <div class="story-img-wrapper position-relative">
+              <img [src]="s.img" [alt]="s.couple" class="w-100 story-img" />
+              <div class="position-absolute bottom-0 start-0 m-3">
+                <span class="badge bg-danger shadow-sm">
+                  <i class="bi bi-heart-fill me-1"></i> {{ s.date }}
+                </span>
+              </div>
+            </div>
+
+            <!-- Story Body -->
+            <div class="p-4 d-flex flex-column flex-grow-1">
+              <div class="text-warning mb-2 fs-5">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+              </div>
+              <h5 class="fw-bold font-serif text-dark mb-1">{{ s.couple }}</h5>
+              <div class="small text-muted mb-3 font-monospace">{{ s.caste }}</div>
+              <div class="fst-italic text-secondary mb-3">{{ s.quote }}</div>
+              <p class="small text-muted flex-grow-1 mb-0 line-clamp-3">
+                {{ s.story }}
+              </p>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
