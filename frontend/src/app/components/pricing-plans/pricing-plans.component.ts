@@ -1,6 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatrimonyService } from '../../services/matrimony.service';
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-pricing-plans',
@@ -9,7 +10,7 @@ import { MatrimonyService } from '../../services/matrimony.service';
   templateUrl: './pricing-plans.component.html',
   styleUrls: ['./pricing-plans.component.css']
 })
-export class PricingPlansComponent {
+export class PricingPlansComponent implements OnInit {
   readonly matrimonyService = inject(MatrimonyService);
   private readonly apiService = inject(ApiService);
 

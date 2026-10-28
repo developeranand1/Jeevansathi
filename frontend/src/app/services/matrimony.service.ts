@@ -589,6 +589,14 @@ export class MatrimonyService {
     }
   }
 
+  isShortlisted(id: string): boolean {
+    return this.shortlistedIds().has(id);
+  }
+
+  isInterestSent(id: string): boolean {
+    return this.interestsSentIds().has(id);
+  }
+
   // Send Interest action
   sendInterest(id: string): void {
     const current = new Set(this.interestsSentIds());

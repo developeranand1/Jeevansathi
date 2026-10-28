@@ -1,13 +1,13 @@
 import { Component, inject, signal, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { MatrimonyService } from '../../services/matrimony.service';
 import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-user-dashboard',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule],
   templateUrl: './user-dashboard.component.html',
   styleUrls: ['./user-dashboard.component.css']
 })
@@ -49,7 +49,7 @@ export class UserDashboardComponent implements OnInit {
           this.plans.set(res.data);
         }
       },
-      error: () => {}
+      error: () => { }
     });
   }
 
