@@ -3,13 +3,27 @@ const mongoose = require('mongoose');
 const planSchema = new mongoose.Schema({
   plan_code: {
     type: String,
-    enum: ['FREE', 'SILVER', 'GOLD', 'ROYAL_VIP'],
     unique: true,
     required: true,
+    trim: true,
+    uppercase: true,
   },
   plan_name: {
     type: String,
     required: true,
+    trim: true,
+  },
+  subtitle: {
+    type: String,
+    default: '',
+  },
+  badge: {
+    type: String,
+    default: '',
+  },
+  is_popular: {
+    type: Boolean,
+    default: false,
   },
   price_inr: {
     type: Number,

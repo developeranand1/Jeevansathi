@@ -52,6 +52,11 @@ import { DataTableComponent, TableColumn, TableAction } from '../../components/d
                   <div class="col-md-6">
                     <label class="form-label small fw-semibold text-secondary mb-1">Plan Code</label>
                     <select class="form-select form-select-compact" formControlName="plan_code">
+                      <option value="CLASSIC">CLASSIC (3 Months / 50 Contacts)</option>
+                      <option value="CLASSIC_PLUS">CLASSIC_PLUS (8 Months / 100 Contacts)</option>
+                      <option value="CLASSIC_GOLD">CLASSIC_GOLD (1 Year / 170 Contacts)</option>
+                      <option value="CLASSIC_DIAMOND">CLASSIC_DIAMOND (18 Months / 225 Contacts)</option>
+                      <option value="CLASSIC_PLATINUM">CLASSIC_PLATINUM (2 Years / 350 Contacts)</option>
                       <option value="FREE">FREE</option>
                       <option value="SILVER">SILVER</option>
                       <option value="GOLD">GOLD</option>

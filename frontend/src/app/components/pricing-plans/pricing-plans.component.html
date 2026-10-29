@@ -1,62 +1,314 @@
-<section id="pricing" class="py-5 bg-sand-gradient">
-  <div class="container-fluid px-3 px-md-4 px-xl-5" style="max-width: 1520px; margin: 0 auto;">
-    <!-- Header -->
-    <div class="text-center mb-5">
-      <div class="section-header-motif">
-        <span class="divider-line"></span>
-        <i class="bi bi-gem text-warning fs-5"></i>
-        <span class="divider-line right"></span>
+<section id="pricing" class="py-5 banner-theme-wrapper position-relative">
+  <div class="container-fluid px-3 px-md-4 px-xl-5" style="max-width: 1560px; margin: 0 auto;">
+    
+    <!-- Authentic Indian Wedding Top Tagline Banner from Billboard Photo -->
+    <div class="text-center mb-4">
+      <div class="tagline-pill-banner shadow-sm mb-3 d-inline-block">
+        <h2 class="hindi-tagline mb-0">हम रिश्ता नहीं परिवार बनाते हैं।</h2>
       </div>
-      <h2 class="display-6 fw-bold">VIP & Premium Membership Plans</h2>
-      <p class="text-muted max-w-600 mx-auto">
-        Accelerate your matrimonial search with direct verified phone contacts, WhatsApp messaging, and dedicated relationship management.
+      <h3 class="font-serif fw-bold text-white mb-2 display-6">
+        Jeevansathi Classic Membership Packages
+      </h3>
+      <p class="text-white-50 max-w-700 mx-auto small">
+        Transparent, auspicious and family-oriented matrimonial packages. Directly view verified WhatsApp & phone contacts, send unlimited interests, and find your ideal life partner.
       </p>
     </div>
 
-    <!-- Pricing Cards Grid -->
-    <div class="row g-4 align-items-stretch justify-content-center">
-      @for (p of plans; track p.name) {
-        <div class="col-lg-4">
-          <div class="pricing-card h-100 rounded-4 p-4 d-flex flex-column bg-white border position-relative" [class.popular-card]="p.isPopular">
+    <!-- 5 Membership Cards Grid (Side-by-Side on Desktop) -->
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-5 g-3 align-items-stretch justify-content-center mb-4 pt-2">
+      @for (p of plans; track p.code) {
+        <div class="col d-flex">
+          <div class="classic-plan-card w-100 rounded-4 d-flex flex-column position-relative shadow-sm" [class.popular-gold-border]="p.isPopular">
+            
+            <!-- Most Popular Ribbon (Neatly positioned at the top, non-overlapping) -->
             @if (p.isPopular) {
-              <div class="popular-ribbon">
-                <span class="badge bg-warning text-dark fw-bold px-3 py-1 shadow-sm">
-                  <i class="bi bi-fire me-1"></i> {{ p.badge }}
+              <div class="card-top-pill">
+                <span class="badge bg-gold text-dark fw-bold px-3 py-1 shadow-sm">
+                  <i class="bi bi-star-fill me-1 text-dark"></i> MOST POPULAR
                 </span>
               </div>
             }
 
-            <div class="mb-3">
-              <h4 class="fw-bold font-serif text-dark mb-1">{{ p.name }}</h4>
-              <div class="small text-muted">{{ p.subtitle }}</div>
+            <!-- Card Header -->
+            <div class="plan-card-header p-3 text-center">
+              <h5 class="fw-bold font-serif mb-0 card-title-text">{{ p.name }}</h5>
             </div>
 
-            <!-- Price -->
-            <div class="price-box my-3 p-3 rounded-3 bg-light text-center">
-              <div class="display-6 fw-bold text-dark font-serif">{{ p.price }}</div>
-              <div class="small text-muted">{{ p.period }}</div>
+            <!-- Price & Token Ribbon (Matching billboard blue ribbon) -->
+            <div class="plan-token-ribbon px-2 py-2.5 text-center">
+              <div class="price-val-row d-flex align-items-baseline justify-content-center">
+                <span class="price-val">{{ p.price }}</span>
+                <span class="price-period ms-1">/ {{ p.period }}</span>
+              </div>
+              <div class="tokens-badge-text">{{ p.tokensBadge }}</div>
             </div>
 
-            <!-- Features List -->
-            <ul class="list-unstyled flex-grow-1 my-3 d-flex flex-column gap-2 small">
-              @for (feat of p.features; track feat) {
-                <li class="d-flex align-items-start gap-2">
-                  <i class="bi bi-check-circle-fill text-success flex-shrink-0 mt-1"></i>
-                  <span class="text-secondary">{{ feat }}</span>
-                </li>
-              }
-            </ul>
+            <!-- Plan Body: Features List -->
+            <div class="p-3 d-flex flex-column flex-grow-1 bg-card-body">
+              <ul class="list-unstyled d-flex flex-column gap-2 small flex-grow-1 mb-3">
+                @for (feat of p.features; track feat) {
+                  <li class="d-flex align-items-start gap-2">
+                    <i class="bi bi-check-circle-fill text-gold flex-shrink-0 mt-0.5"></i>
+                    <span class="feature-text">{{ feat }}</span>
+                  </li>
+                }
+              </ul>
 
-            <button
-              type="button"
-              class="btn w-100 py-2 fs-6 mt-3 {{ p.btnClass }}"
-              (click)="selectPlan(p.name)"
-            >
-              {{ p.btnText }}
-            </button>
+              <!-- Upgrade / Pay Button -->
+              <button
+                type="button"
+                class="btn w-100 py-2.5 fw-bold btn-plan-action shadow-sm mt-auto"
+                [ngClass]="p.isPopular ? 'btn-popular-gold' : 'btn-card-gold'"
+                (click)="openCheckout(p)"
+              >
+                <i class="bi bi-gem me-1.5"></i> Select Plan
+              </button>
+            </div>
+
           </div>
         </div>
       }
     </div>
+
+    <!-- Authentic Address & Trust Strip matching Billboard Footer -->
+    <div class="mt-4 p-3 rounded-4 bg-dark-maroon text-white text-center border border-warning border-opacity-25 shadow-sm d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+      <div class="d-flex align-items-center gap-2">
+        <i class="bi bi-geo-alt-fill text-warning fs-5"></i>
+        <span class="small fw-semibold">B164/2 Awas Vikas Colony &bull; Official Registration Office</span>
+      </div>
+      <div class="d-flex align-items-center gap-3 small text-white-50">
+        <span><i class="bi bi-shield-check text-success me-1"></i> 100% Verified Candidates</span>
+        <span><i class="bi bi-lock-fill text-warning me-1"></i> 256-Bit Secure Payments</span>
+        <span><i class="bi bi-headset text-info me-1"></i> Family Helpline: +91 98765 43210</span>
+      </div>
+    </div>
+
   </div>
+
+  <!-- PAYMENT GATEWAY CHECKOUT MODAL -->
+  @if (isCheckoutOpen()) {
+    <div class="modal d-block bg-dark bg-opacity-75 animate-fade-in" tabindex="-1" style="z-index: 1060;">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content rounded-4 border-0 shadow-lg overflow-hidden">
+          
+          <!-- Modal Header -->
+          <div class="modal-header bg-maroon text-white py-3 px-4 border-bottom border-warning">
+            <div>
+              <h5 class="modal-title font-serif fw-bold mb-0">
+                <i class="bi bi-shield-lock-fill text-warning me-2"></i> Secure Matrimony Payment Gateway
+              </h5>
+              <small class="text-white-50">Instant Activation &bull; Direct Contact Access</small>
+            </div>
+            <button type="button" class="btn-close btn-close-white" (click)="closeCheckout()"></button>
+          </div>
+
+          <div class="modal-body p-4 bg-light">
+            
+            <!-- Success Screen -->
+            @if (paymentSuccess()) {
+              <div class="text-center py-4 animate-scale-up">
+                <div class="success-icon-wrap mx-auto mb-3 bg-success-subtle text-success rounded-circle d-flex align-items-center justify-content-center">
+                  <i class="bi bi-check-circle-fill display-4"></i>
+                </div>
+                <h4 class="fw-bold font-serif text-dark mb-1">🎉 Badhaai Ho! Payment Successful</h4>
+                <p class="text-muted small mb-3">Your membership package has been activated with auspicious blessings!</p>
+                
+                <div class="card border-0 shadow-sm rounded-3 p-3 bg-white mx-auto text-start mb-4" style="max-width: 480px;">
+                  <div class="d-flex justify-content-between py-1 border-bottom small">
+                    <span class="text-muted">Plan Activated:</span>
+                    <strong class="text-maroon">{{ paymentSuccess().plan_name }}</strong>
+                  </div>
+                  <div class="d-flex justify-content-between py-1 border-bottom small">
+                    <span class="text-muted">Total Paid:</span>
+                    <strong>₹{{ paymentSuccess().amount_paid | number }}</strong>
+                  </div>
+                  <div class="d-flex justify-content-between py-1 border-bottom small">
+                    <span class="text-muted">Contacts Unlocked:</span>
+                    <strong class="text-success">{{ paymentSuccess().contacts_added }} Verified Contacts</strong>
+                  </div>
+                  <div class="d-flex justify-content-between py-1 border-bottom small">
+                    <span class="text-muted">Invoice No:</span>
+                    <span class="font-monospace text-secondary">{{ paymentSuccess().invoice_number }}</span>
+                  </div>
+                  <div class="d-flex justify-content-between py-1 small">
+                    <span class="text-muted">Transaction ID:</span>
+                    <span class="font-monospace text-secondary">{{ paymentSuccess().payment_id }}</span>
+                  </div>
+                </div>
+
+                <div class="d-flex justify-content-center gap-2">
+                  <button (click)="closeCheckout()" class="btn btn-royal-gold px-4 py-2">
+                    <i class="bi bi-search-heart me-1"></i> Start Viewing Contacts
+                  </button>
+                </div>
+              </div>
+            } @else {
+
+              <div class="row g-4">
+                
+                <!-- Left Column: Plan Summary & Pricing Breakdown -->
+                <div class="col-md-5">
+                  <div class="card border-0 shadow-sm rounded-3 p-3 bg-white h-100">
+                    <span class="badge bg-gold text-dark align-self-start mb-2 px-2 py-1">SELECTED PLAN</span>
+                    <h5 class="fw-bold font-serif text-maroon mb-1">{{ selectedPlan()?.name }}</h5>
+                    <div class="text-muted small mb-3">{{ selectedPlan()?.tokensBadge }}</div>
+
+                    <div class="bg-light p-3 rounded-3 mb-3">
+                      <div class="d-flex justify-content-between small mb-1">
+                        <span class="text-muted">Plan Base Fee:</span>
+                        <span>₹{{ selectedPlan()?.price_inr | number }}</span>
+                      </div>
+                      <div class="d-flex justify-content-between small mb-2">
+                        <span class="text-muted">GST (18%):</span>
+                        <span>₹{{ (serverOrder?.gst_amount_inr || ((selectedPlan()?.price_inr || 0) * 0.18)) | number:'1.0-0' }}</span>
+                      </div>
+                      <hr class="my-1">
+                      <div class="d-flex justify-content-between fw-bold fs-5 text-dark">
+                        <span>Total Payable:</span>
+                        <span class="text-maroon font-serif">₹{{ (serverOrder?.total_paid_inr || ((selectedPlan()?.price_inr || 0) * 1.18)) | number:'1.0-0' }}</span>
+                      </div>
+                    </div>
+
+                    <div class="small text-secondary mb-3">
+                      <div class="d-flex align-items-center gap-2 mb-1">
+                        <i class="bi bi-telephone-fill text-gold"></i>
+                        <span><strong>{{ selectedPlan()?.contact_views }}</strong> Direct Contact Unlocks</span>
+                      </div>
+                      <div class="d-flex align-items-center gap-2 mb-1">
+                        <i class="bi bi-calendar-check-fill text-gold"></i>
+                        <span>Validity: <strong>{{ selectedPlan()?.period }}</strong></span>
+                      </div>
+                      <div class="d-flex align-items-center gap-2">
+                        <i class="bi bi-patch-check-fill text-gold"></i>
+                        <span>Full Ashtakoot Kundli Milan</span>
+                      </div>
+                    </div>
+
+                    <div class="mt-auto p-2 bg-warning-subtle text-dark rounded-2 small text-center">
+                      <i class="bi bi-shield-fill-check text-success me-1"></i> Guaranteed 100% Secure Checkout
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Right Column: Candidate Info & Payment Methods -->
+                <div class="col-md-7">
+                  <div class="card border-0 shadow-sm rounded-3 p-3 bg-white h-100">
+                    
+                    <!-- Candidate Details -->
+                    <h6 class="fw-bold text-dark mb-2">
+                      <i class="bi bi-person-circle text-gold me-1"></i> Candidate / Family Details
+                    </h6>
+                    <div class="row g-2 mb-3">
+                      <div class="col-sm-6">
+                        <label class="form-label font-size-xs text-muted mb-0">Full Name</label>
+                        <input type="text" class="form-control form-control-sm" [(ngModel)]="customerName" placeholder="Candidate Name">
+                      </div>
+                      <div class="col-sm-6">
+                        <label class="form-label font-size-xs text-muted mb-0">Mobile Number (WhatsApp)</label>
+                        <input type="text" class="form-control form-control-sm" [(ngModel)]="customerMobile" placeholder="10-digit Mobile">
+                      </div>
+                    </div>
+
+                    <!-- Payment Method Tabs -->
+                    <h6 class="fw-bold text-dark mb-2">
+                      <i class="bi bi-credit-card-2-front text-gold me-1"></i> Select Payment Mode
+                    </h6>
+
+                    <ul class="nav nav-pills nav-fill mb-3 bg-light p-1 rounded-3 small">
+                      <li class="nav-item">
+                        <button type="button" class="nav-link py-1.5" [class.active]="activePaymentTab() === 'upi'" (click)="activePaymentTab.set('upi')">
+                          <i class="bi bi-qr-code me-1"></i> UPI / QR Code
+                        </button>
+                      </li>
+                      <li class="nav-item">
+                        <button type="button" class="nav-link py-1.5" [class.active]="activePaymentTab() === 'razorpay'" (click)="activePaymentTab.set('razorpay')">
+                          <i class="bi bi-credit-card me-1"></i> Razorpay / Cards
+                        </button>
+                      </li>
+                    </ul>
+
+                    <!-- Tab 1: UPI & Dynamic QR Code -->
+                    @if (activePaymentTab() === 'upi') {
+                      <div class="text-center p-2 border rounded-3 bg-light">
+                        <div class="mb-2">
+                          <span class="badge bg-success-subtle text-success small px-2 py-1">
+                            <i class="bi bi-lightning-charge-fill me-1"></i> Instant 0% Convenience Fee
+                          </span>
+                        </div>
+
+                        <!-- Dynamic QR Code -->
+                        @if (serverOrder?.upi?.qr_code) {
+                          <div class="qr-code-box mx-auto my-2 p-2 bg-white rounded shadow-sm d-inline-block">
+                            <img [src]="serverOrder.upi.qr_code" alt="UPI QR Code" style="width: 170px; height: 170px;" />
+                          </div>
+                        }
+
+                        <div class="small text-muted mb-1">Scan using any UPI App (GPay, PhonePe, Paytm, BHIM)</div>
+                        <div class="d-flex justify-content-center align-items-center gap-2 mb-2 font-monospace small">
+                          <span class="badge bg-secondary-subtle text-dark">UPI ID: vivahmatrimony&#64;upi</span>
+                        </div>
+
+                        <!-- Mobile UPI Deep-link App Buttons -->
+                        <div class="d-flex gap-2 justify-content-center mb-3">
+                          <a [href]="serverOrder?.upi?.intent_url || '#'" class="btn btn-sm btn-outline-dark px-2 py-1 small">
+                            <i class="bi bi-phone me-1"></i> Open in GPay / PhonePe
+                          </a>
+                        </div>
+
+                        <div class="input-group input-group-sm mb-2">
+                          <input type="text" class="form-control" [(ngModel)]="upiRefNumber" placeholder="Enter UPI UTR / Ref Number (Optional)">
+                          <button class="btn btn-maroon px-3" [disabled]="isProcessing()" (click)="verifyPayment('UPI')">
+                            @if (isProcessing()) {
+                              <span class="spinner-border spinner-border-sm me-1"></span>
+                            }
+                            <i class="bi bi-check-circle me-1"></i> Verify & Activate Plan
+                          </button>
+                        </div>
+                      </div>
+                    }
+
+                    <!-- Tab 2: Razorpay Online Gateway -->
+                    @if (activePaymentTab() === 'razorpay') {
+                      <div class="p-3 border rounded-3 bg-light text-center">
+                        <div class="mb-3">
+                          <i class="bi bi-credit-card-2-back display-6 text-maroon"></i>
+                          <h6 class="fw-bold mt-2 mb-1">Razorpay Online Gateway</h6>
+                          <p class="text-muted small mb-0">Pay with Debit Cards, Credit Cards, NetBanking (All Indian Banks), and Digital Wallets.</p>
+                        </div>
+
+                        <button type="button" class="btn btn-maroon w-100 py-2.5 shadow-sm fw-bold" [disabled]="isProcessing()" (click)="payWithRazorpay()">
+                          @if (isProcessing()) {
+                            <span class="spinner-border spinner-border-sm me-1"></span> Processing Gateway...
+                          } @else {
+                            <i class="bi bi-lock-fill me-1"></i> Pay ₹{{ (serverOrder?.total_paid_inr || ((selectedPlan()?.price_inr || 0) * 1.18)) | number:'1.0-0' }} with Razorpay
+                          }
+                        </button>
+
+                        <div class="mt-2 text-center">
+                          <button type="button" class="btn btn-link btn-sm text-secondary text-decoration-none" (click)="verifyPayment('SIMULATED_SUCCESS')">
+                            <i class="bi bi-check2-all me-1"></i> Quick Test Payment (Instant Demo Activation)
+                          </button>
+                        </div>
+                      </div>
+                    }
+
+                  </div>
+                </div>
+
+              </div>
+
+            }
+
+          </div>
+
+          <div class="modal-footer py-2 px-4 bg-white border-top">
+            <button type="button" class="btn btn-sm btn-outline-secondary" (click)="closeCheckout()">
+              {{ paymentSuccess() ? 'Close' : 'Cancel' }}
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  }
 </section>

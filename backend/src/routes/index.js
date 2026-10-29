@@ -3,10 +3,12 @@ const router = express.Router();
 
 const adminRoutes = require('./admin.routes');
 const authRoutes = require('./auth.routes');
+const paymentRoutes = require('./payment.routes');
 const Plan = require('../models/Plan');
 
 router.use('/admin', adminRoutes);
 router.use('/auth', authRoutes);
+router.use('/payment', paymentRoutes);
 
 // Public Plans for Frontend Home Page
 router.get('/membership/plans', async (req, res) => {

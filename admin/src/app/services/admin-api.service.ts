@@ -2,6 +2,7 @@ import { Injectable, inject, signal } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, finalize, tap } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
 export interface ApiResponse<T = any> {
   success: boolean;
@@ -20,8 +21,11 @@ export interface ApiResponse<T = any> {
 })
 export class AdminApiService {
   private readonly http = inject(HttpClient);
-  // Backend runs on port 5000 with prefix /api/v1
-  private readonly baseUrl = 'http://localhost:5000/api/v1';
+  // Dynamic Base API: uses production domain on production or non-localhost hostnames
+  private readonly baseUrl = (
+    environment.production ||
+    (typeof window !== 'undefined' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1')
+  ) ? 'https://api.jeevansathimarriage.com/api/v1' : (environment.apiUrl || 'http://localhost:6000/api/v1');
 
   // Signals for token & admin auth state
   readonly token = signal<string | null>(localStorage.getItem('admin_token'));

@@ -30,19 +30,22 @@ const createPlan = async (req, res) => {
       features = [],
       has_relationship_manager = false,
       is_active = true,
+      subtitle = '',
+      badge = '',
+      is_popular = false,
     } = req.body;
 
     if (!plan_code || !plan_name || price_inr === undefined || !duration_days) {
       return errorResponse(res, 'Required fields missing', 'VALIDATION_ERROR', 400);
     }
 
-    const existing = await SubscriptionPlan.findOne({ plan_code });
+    const existing = await SubscriptionPlan.findOne({ plan_code: plan_code.toUpperCase().trim() });
     if (existing) {
       return errorResponse(res, 'Plan code already exists', 'DUPLICATE_PLAN', 409);
     }
 
     const plan = await SubscriptionPlan.create({
-      plan_code,
+      plan_code: plan_code.toUpperCase().trim(),
       plan_name,
       price_inr,
       gst_percent,
@@ -52,6 +55,9 @@ const createPlan = async (req, res) => {
       features,
       has_relationship_manager,
       is_active,
+      subtitle,
+      badge,
+      is_popular,
       created_by_admin_id: req.admin_id,
     });
 

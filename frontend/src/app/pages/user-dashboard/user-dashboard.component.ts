@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { MatrimonyService } from '../../services/matrimony.service';
 import { ApiService } from '../../services/api.service';
+import { PricingPlansComponent } from '../../components/pricing-plans/pricing-plans.component';
 
 @Component({
   selector: 'app-user-dashboard',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, PricingPlansComponent],
   templateUrl: './user-dashboard.component.html',
   styleUrls: ['./user-dashboard.component.css']
 })

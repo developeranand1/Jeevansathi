@@ -1,21 +1,197 @@
-.pricing-card {
-  transition: all 0.35s ease;
-  border-color: #E8DFD3 !important;
+.banner-theme-wrapper {
+  background: linear-gradient(135deg, #43040a 0%, #5d0813 50%, #2f0205 100%);
+  color: #ffffff;
 }
 
-.pricing-card:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-lg);
-  border-color: var(--sacred-gold) !important;
+/* Authentic Top Billboard Tagline Banner */
+.tagline-pill-banner {
+  background: #ffea00;
+  color: #1a1a1a;
+  padding: 8px 36px;
+  border-radius: 40px;
+  border: 3.5px solid #1a1a1a;
+  display: inline-block;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
 }
 
-.popular-card {
-  border: 2px solid var(--sacred-gold) !important;
-  box-shadow: var(--shadow-md);
+.hindi-tagline {
+  font-family: 'Playfair Display', serif, sans-serif;
+  font-weight: 900;
+  font-size: 1.85rem;
+  letter-spacing: 0.5px;
+  color: #000000;
+  text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.4);
 }
 
-.popular-ribbon {
+@media (max-width: 768px) {
+  .hindi-tagline {
+    font-size: 1.3rem;
+  }
+  .tagline-pill-banner {
+    padding: 6px 20px;
+  }
+}
+
+/* Card Styling matching billboard */
+.classic-plan-card {
+  background: #560711;
+  border: 1.5px solid #d4af37;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  overflow: visible !important;
+}
+
+.classic-plan-card:hover {
+  transform: translateY(-5px);
+  border-color: #ffd700;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
+}
+
+.popular-gold-border {
+  border: 2px solid #ffd700 !important;
+  box-shadow: 0 0 22px rgba(255, 215, 0, 0.35) !important;
+  background: linear-gradient(180deg, #660a15 0%, #4c050d 100%) !important;
+}
+
+/* Non-overlapping Top Pill for Most Popular */
+.card-top-pill {
   position: absolute;
-  top: -14px;
-  right: 24px;
+  top: -13px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  white-space: nowrap;
+}
+
+.card-top-pill .badge {
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+  border: 1px solid #ffffff;
+}
+
+.plan-card-header {
+  background: rgba(0, 0, 0, 0.25);
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+}
+
+.card-title-text {
+  color: #ffffff !important;
+  font-size: 1.15rem;
+  font-weight: 700;
+  white-space: nowrap;
+  letter-spacing: 0.2px;
+}
+
+/* The Blue Ribbon from Billboard Photo */
+.plan-token-ribbon {
+  background: linear-gradient(180deg, #143e93 0%, #0d2f75 100%) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.price-val {
+  color: #ffffff !important;
+  font-size: 1.65rem;
+  font-weight: 900;
+  font-family: 'Playfair Display', serif;
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.price-period {
+  color: #e0e7ff !important;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.tokens-badge-text {
+  color: #fef08a !important;
+  font-size: 0.78rem;
+  font-weight: 700;
+  margin-top: 3px;
+  letter-spacing: 0.3px;
+}
+
+.bg-card-body {
+  background: rgba(0, 0, 0, 0.12);
+  border-bottom-left-radius: 14px;
+  border-bottom-right-radius: 14px;
+}
+
+.feature-text {
+  color: #f8fafc !important;
+  font-size: 0.82rem;
+  line-height: 1.35;
+}
+
+.bg-dark-maroon {
+  background: #250205;
+}
+
+/* Buttons */
+.btn-plan-action {
+  font-size: 0.88rem;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  border-radius: 8px;
+  transition: all 0.25s ease;
+}
+
+.btn-card-gold {
+  color: #ffd700 !important;
+  border: 1.5px solid #ffd700;
+  background: transparent;
+}
+
+.btn-card-gold:hover {
+  background: #ffd700;
+  color: #2e0206 !important;
+  font-weight: 800;
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
+}
+
+.btn-popular-gold {
+  background: linear-gradient(135deg, #ffd700 0%, #f59e0b 100%);
+  color: #2e0206 !important;
+  font-weight: 800;
+  border: none;
+}
+
+.btn-popular-gold:hover {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: #000000 !important;
+  box-shadow: 0 4px 14px rgba(255, 215, 0, 0.5);
+}
+
+.btn-maroon {
+  background-color: #700918;
+  color: #ffffff;
+  border: none;
+}
+
+.btn-maroon:hover {
+  background-color: #550612;
+  color: #ffffff;
+}
+
+.text-gold {
+  color: #ffd700 !important;
+}
+
+.bg-gold {
+  background-color: #ffd700 !important;
+}
+
+.success-icon-wrap {
+  width: 80px;
+  height: 80px;
+}
+
+.font-size-xs {
+  font-size: 0.8rem;
+}
+
+.qr-code-box img {
+  border: 1px solid #dee2e6;
 }

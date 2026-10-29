@@ -2,6 +2,7 @@ import { Injectable, inject, signal } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, finalize, tap } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
 export interface ApiResponse<T> {
   success: boolean;
@@ -16,8 +17,11 @@ export interface ApiResponse<T> {
 export class ApiService {
   private readonly http = inject(HttpClient);
 
-  // Base API configuration (Can point to local or remote backend)
-  private readonly baseUrl = 'http://localhost:5000/api';
+  // Dynamic Base API: uses production domain on production or non-localhost hostnames
+  private readonly baseUrl = (
+    environment.production ||
+    (typeof window !== 'undefined' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1')
+  ) ? 'https://api.jeevansathimarriage.com/api' : (environment.apiUrl || 'http://localhost:6000/api');
 
   // Signals for global loading state and error tracking
   readonly isLoading = signal<boolean>(false);
